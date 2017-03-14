@@ -10,30 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libprintf.h"
 
 
-void	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list	args;
+	char	*str;
+	int		i;
+	char	c;
 
+	i = 0;
 	va_start(args, format);
-	while (*format != '\0')
+	if (!(format = ft_strchr(format, '%')))
 	{
-		if (*format == 'd')
-		{
-			int i = va_args(args, int);
-			ft_putnbr(i);
-		}
-		else if (*format == 'c')
-		{
-			char c = va_args(args, char);
-			ft_putchar(c);
-		}
-		else
-		{
-			ft_putstr("something else");
-		}
-		ft_putchar('\n');
+		i = ft_strlen(format);
+		write(1, format, i);
 	}
+	else
+	{
+		format++;
+		while (*format != '\0')
+		{
+			if (*format == 'd')
+			{
+				i = va_arg(args, int);
+				str = ft_itoa(i);
+				write(1, str, ft_strlen(str));
+			}
+			else if (*format == 'c')
+			{
+				c = va_arg(args, int);
+				write(1, &c, 1);
+			}
+			else if (*format == '\n')
+			{
+				write(1, "\n", 1);
+			}
+			else
+			{
+				write(1, "something else\0", 15);
+			}
+			format++;
+		}
+		va_end(args);
+	}
+	return (i);
 }

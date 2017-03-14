@@ -12,6 +12,23 @@
 
 #include "libprintf.h"
 
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+
+	if (!len)
+	{
+		str = ft_strnew(len + 1);
+		*str = '\0';
+		return (str);
+	}
+	if (!s || !(str = ft_strnew(len)))
+		return (NULL);
+	if (str)
+		ft_strncpy(str, &s[start], len);
+	return (str);
+}
+
 static int	ft_nbrlen(intmax_t num)
 {
 	int		flag;
@@ -53,10 +70,10 @@ static int	ft_nbrlen_base(uintmax_t num, short base)
 
 	if (num == 0)
 		return (1);
-	flag = num < 0 ? 1 : 0;
+	flag = 0;
 	while (num != 0)
 	{
-		num = num / 10;
+		num = num / base;
 		++flag;
 	}
 	return (flag);
@@ -66,15 +83,10 @@ char		*ft_itoa_base(uintmax_t nbr, short base)
 {
 	char	*str;
 	int		len;
-	int		flag;
-	char	hex[16];
-
-	hex = "0123456789ABCDEF";
-	len = ft_nbrlen(nbr);
+	
+	len = ft_nbrlen_base(nbr, base);
 	if (!(str = ft_strnew(len)))
 		return (NULL);
-	flag = nbr < 0 ? 1 : 0;
-	nbr = flag ? -nbr : nbr;
 	while (--len)
 	{
 		str[len] = hex[nbr % base];

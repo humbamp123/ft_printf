@@ -6,13 +6,14 @@
 #    By: apineda <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/08 14:15:48 by apineda           #+#    #+#              #
-#    Updated: 2017/03/08 14:15:50 by apineda          ###   ########.fr        #
+#    Updated: 2017/03/12 19:37:28 by apineda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf
+NAME = libftprintf.a
 
-FILENAMES = ft_printf.c ft_libfunct_1.c ft_libfunct_2.c 
+FILENAMES = ft_printf.c printf_std.c ft_libfunct_1.c ft_libfunct_2.c \
+			ft_libfunct_3.c ft_libfunct_4.c
 INCLUDE_DIR = ./includes
 
 CC = gcc
