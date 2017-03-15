@@ -22,7 +22,9 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		*str = '\0';
 		return (str);
 	}
-	if (!s || !(str = ft_strnew(len)))
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	if (!s)
 		return (NULL);
 	if (str)
 		ft_strncpy(str, &s[start], len);
@@ -49,8 +51,10 @@ char		*ft_itoa(intmax_t nbr)
 	char	*str;
 	int		len;
 	int		flag;
+	int		end;
 
 	len = ft_nbrlen(nbr);
+	end = len;
 	if (!(str = ft_strnew(len)))
 		return (NULL);
 	flag = nbr < 0 ? 1 : 0;
@@ -61,6 +65,7 @@ char		*ft_itoa(intmax_t nbr)
 		nbr = nbr / 10;
 	}
 	str[len] = flag ? '-' : nbr % 10 + '0';
+	str[end] = '\0';
 	return (str);
 }
 
@@ -83,8 +88,10 @@ char		*ft_itoa_base(uintmax_t nbr, short base)
 {
 	char	*str;
 	int		len;
-	
+	int		end;
+
 	len = ft_nbrlen_base(nbr, base);
+	end = len;
 	if (!(str = ft_strnew(len)))
 		return (NULL);
 	while (--len)
@@ -93,5 +100,6 @@ char		*ft_itoa_base(uintmax_t nbr, short base)
 		nbr = nbr / base;
 	}
 	str[len] = hex[nbr % base];
+	str[end] = '\0';
 	return (str);
 }

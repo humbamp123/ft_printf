@@ -25,8 +25,10 @@ char	*ft_strnew(size_t size)
 {
 	char	*str;
 
-	str = malloc(size + 1);
-	if (size && str)
+	str = NULL;
+	if (!(str = malloc(size + 1)))
+		return (NULL);
+	if (size)
 		ft_bzero(str, size + 1);
 	return (str);
 }

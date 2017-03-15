@@ -22,21 +22,6 @@ char		*ft_appendstr(char *ret, char *str)
 		ret = temp;
 	}
 	else if (str && !(ret))
-	{
 		ret = ft_strdup(str);
-		free(str);
-	}
 	return (ret);
-}
-
-char		*ft_appendnstr(const char *ret, int len)
-{
-	char		*str;
-
-	str = NULL;
-	if (ret)
-	{
-		str = ft_strsub(ret, 0, len);
-	}
-	return (str);
 }

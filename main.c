@@ -6,7 +6,7 @@
 /*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 13:02:38 by apineda           #+#    #+#             */
-/*   Updated: 2017/03/08 13:19:18 by apineda          ###   ########.fr       */
+/*   Updated: 2017/03/15 03:50:57 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int		main(void)
 	int		i_int;
 	long	i_long;
 	long long	i_ll;
+	long long	i;
 	unsigned int	i_uint;
 	// unsigned long	i_ulong;
 	unsigned long long	i_ull;
 	char	c;
-	char	*c_str;
+	char	c_str[5] = "test\0";
 	char	*c_ret;
 	unsigned char	c_uchr;
 	// unsigned char	*c_ustr;
@@ -38,8 +39,7 @@ int		main(void)
 	i_ll = 9223372036854775807;
 	i_ull = 1446744073709551615;
 	c = 65;
-	c_str = (char *)malloc(sizeof(char) * 5);
-	c_str = "test\0";
+	// c_str = "test\0";
 	c_ret = NULL;
 	c_uchr = 192;
 	// c_ustr = "test";
@@ -49,9 +49,14 @@ int		main(void)
 	d_double = 2.12345678901234;
 	ld_ldouble = 2.123456789012345678901;
 	
-	printf("append test\n");
-	ft_appendstr(c_ret, c_str);
-	printf("%s\n", c_ret);
+	i = 0;
+	// printf("append test\n");
+	// while (i < i_ll)
+	// {
+		ft_printf("tits %s\n", c_str);
+		// printf("%i\n", ft_printf("tits %s", c_str));
+	// 	i++;
+	// }
 
 
 	// printf("Int\n");
