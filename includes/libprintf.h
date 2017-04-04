@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   libprintf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:19:51 by apineda           #+#    #+#             */
-/*   Updated: 2017/03/08 13:32:46 by apineda          ###   ########.fr       */
+/*   Updated: 2017/04/03 17:42:15 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,15 @@
 #  define ERR3(a, b, c, d, e) do{if(a){b;c;d;return(e);}}while(0)
 #  define ERR4(a, b, c, d, e, f) do{if(a){b;c;d;e;return(f);}}while(0)
 #  define ERR5(a, b, c, d, e, f, g) do{if(a){b;c;d;e;f;return(g);}}while(0)
-#  define ERR6(a, b, c, d, e, f, g, h) do{if(a){b;c;d;e;f;g;return(h);}}while(0)
+# endif
+
+# ifndef ERWS
+#  define ERW(a,b,c) do{if(a){pl(c); return(b);}}while(0)
+#  define ERW1(a,b,c,d) do{if(a){b;pl(d);return(c);}}while(0)
+#  define ERW2(a,b,c,d,e) do{if(a){b;c;pl(e);return(d);}}while(0)
+#  define ERW3(a,b,c,d,e,f) do{if(a){b;c;d;pl(f);return(e);}}while(0)
+#  define ERW4(a,b,c,d,e,f,g) do{if(a){b;c;d;e;pl(g);return(f);}}while(0)
+#  define ERW5(a,b,c,d,e,f,g,h) do{if(a){b;c;d;e;f;pl(h);return(g);}}while(0)
 # endif
 
 # include <stdarg.h>
@@ -31,7 +39,7 @@
 # include <stdio.h>
 # define hex "0123456789ABCDEF"
 
-
+void				pl(char const *s);
 int					ft_printf(const char *format, ...);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strcpy(char *dst, const char *src);
@@ -51,5 +59,7 @@ char				*ft_appendnstr(const char *ret, int len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
+
+int					ft_printf_s(char *ret, va_list arg);
 
 #endif

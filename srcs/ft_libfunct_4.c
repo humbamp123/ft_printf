@@ -12,6 +12,15 @@
 
 #include "libprintf.h"
 
+void	pl(char const *s)
+{
+	if (s)
+	{
+		write(1, s, ft_strlen(s));
+		write(1, "\n", 1);
+	}
+}
+
 char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
 	unsigned int i;

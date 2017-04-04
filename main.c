@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 13:02:38 by apineda           #+#    #+#             */
-/*   Updated: 2017/03/15 03:50:57 by apineda          ###   ########.fr       */
+/*   Updated: 2017/04/03 14:45:43 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	// unsigned long	i_ulong;
 	unsigned long long	i_ull;
 	char	c;
-	char	c_str[5] = "test\0";
+	char	c_str[6] = "test\n\0";
 	char	*c_ret;
 	unsigned char	c_uchr;
 	// unsigned char	*c_ustr;
@@ -33,7 +33,7 @@ int		main(void)
 	double	d_double;
 	long double	ld_ldouble;
 
-	i_int = 100;
+	i_int = 88;
 	i_uint = 2147483650;
 	i_long = 2147483650;
 	i_ll = 9223372036854775807;
@@ -49,12 +49,12 @@ int		main(void)
 	d_double = 2.12345678901234;
 	ld_ldouble = 2.123456789012345678901;
 	
-	i = 0;
+	i = 88;
 	// printf("append test\n");
 	// while (i < i_ll)
 	// {
-		ft_printf("tits %s\n", c_str);
-		// printf("%i\n", ft_printf("tits %s", c_str));
+		ft_printf("sweet %d\n test%s", i_int, c_str);
+		// printf("%i\n", ft_printf("pits %s", c_str));
 	// 	i++;
 	// }
 
