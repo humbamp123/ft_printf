@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:41:26 by apineda           #+#    #+#             */
-/*   Updated: 2017/03/08 13:11:07 by apineda          ###   ########.fr       */
+/*   Updated: 2017/04/05 21:06:39 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		ft_printf(const char *format, ...)
 {
 	va_list	args;
+	
 	char	*str;
 	int		i;
 

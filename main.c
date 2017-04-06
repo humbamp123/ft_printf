@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 13:02:38 by apineda           #+#    #+#             */
-/*   Updated: 2017/04/03 14:45:43 by apineda          ###   ########.fr       */
+/*   Updated: 2017/04/05 21:13:34 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	// unsigned long	i_ulong;
 	unsigned long long	i_ull;
 	char	c;
-	char	c_str[6] = "test\n\0";
+	// char	c_str[6] = "test\n\0";
 	char	*c_ret;
 	unsigned char	c_uchr;
 	// unsigned char	*c_ustr;
@@ -53,7 +53,7 @@ int		main(void)
 	// printf("append test\n");
 	// while (i < i_ll)
 	// {
-		ft_printf("sweet %d\n test%s", i_int, c_str);
+		ft_printf("sweet %d", i_int);
 		// printf("%i\n", ft_printf("pits %s", c_str));
 	// 	i++;
 	// }

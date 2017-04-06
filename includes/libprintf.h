@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:19:51 by apineda           #+#    #+#             */
-/*   Updated: 2017/04/03 17:42:15 by apineda          ###   ########.fr       */
+/*   Updated: 2017/04/05 20:24:29 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@
 # include <stdio.h>
 # define hex "0123456789ABCDEF"
 
+typedef struct		s_ft_printf {
+char				*fmt;
+char				*str;
+}					t_ft_printf;
+
+
 void				pl(char const *s);
 int					ft_printf(const char *format, ...);
 char				*ft_strchr(const char *s, int c);
@@ -60,6 +66,6 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 
-int					ft_printf_s(char *ret, va_list arg);
+int					ft_printf_s(char *ret, char *fmt, va_list arg);
 
 #endif
