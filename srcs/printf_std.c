@@ -15,8 +15,10 @@ char		*ft_appendstr(char *ret, char *str)
 {
 	char		*temp;
 
+
 	if (str && ret)
 	{
+
 		temp = ft_strjoin(ret, str);
 		free(ret);
 		ret = temp;

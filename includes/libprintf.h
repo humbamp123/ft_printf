@@ -64,8 +64,9 @@ char				*ft_appendstr(char *ret, char *str);
 char				*ft_appendnstr(const char *ret, int len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 
-int					ft_printf_s(char *ret, char *fmt, va_list arg);
+int					ft_printf_s(char **ret, const char *fmt, va_list arg);
 
 #endif

@@ -12,9 +12,9 @@
 
 #include "libprintf.h"
 
-int		ft_printf_s(char *ret, char *fmt, va_list arg)
+int		ft_printf_s(char **ret, const char *fmt, va_list arg)
 {
 	ERW((*ret = ft_appendstr(*ret, va_arg(arg, char *))) == 0, -1, "Appending Error");
+	ft_strlen(fmt);
 	return (1);
-	fmt = fmt;
 }

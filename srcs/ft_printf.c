@@ -24,7 +24,7 @@ int		ft_printf(const char *format, ...)
 	ERW((i = ft_vasprintf(&str, format, args)) == -1, -1, "Vasprintf Error");
 	printf("== %d == \n", i);
 	ERW1(write(1, str, i) == -1, va_end(args), -1, "Write Error");
-	free(str);
+	// free(str);
 	va_end(args);
 	return (i);
 }

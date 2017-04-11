@@ -16,26 +16,28 @@
 #define SIZE 3
 
 static  char	type_ary[COUNT][SIZE] = {
-	{'d'}};
+	{"s"}, {"d"}};
 
-static int	(*funct_ptr[COUNT]) (char *ret, char *fmt, va_list arg) = {
-	ft_printf_s};
+static int	(*funct_ptr[COUNT]) (char **ret, const char *fmt, va_list arg) = {
+	ft_printf_s, ft_printf_d};
 
-static int	flag_checker(char *ret, const char *fmt, va_list arg)
+static int	flag_checker(char **ret, const char *fmt, va_list arg)
 {
 	int			i;
 	char		*dumb;
 
 	i = 0;
-	dumb = ret;
 	dumb = (char *)fmt;
-	arg = 0;
-	// while (*type_ary)
-	// {
-	// 	if (ft_strcmp(*type_ary, ))
-	// }
-	i = funct_ptr[0];
-	return (i);
+	while (*type_ary)
+	{
+		if ((ft_strcmp(*type_ary, type_ary[i])) == 0)
+		{
+			(*funct_ptr[i])(ret, fmt, arg);
+			break;
+		}
+		i++;
+	}
+	return (1);
 }
 
 static	int		checkthrough(char **ret, const char *fmt, va_list arg)
@@ -43,7 +45,6 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 	char			*temp;
 	size_t			spot;
 
-	printf("%c\n", type_ary[0][0]);
 	spot = 0;
 	while (*fmt)
 	{
@@ -54,12 +55,13 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 			if (*temp == 0)
 				break;
 			fmt = temp;
+			spot = 
 		}
+		ERR((spot = flag_checker(ret, fmt, arg)) == 0, -1);
 		break;
-		ERR((spot = flag_checker(*ret, fmt, arg)) == 0, -1);
 		fmt++;
 	}
-	ERR((*ret = ft_appendstr(*ret, va_arg(arg, char *))) == 0, -1);
+	// ERR((*ret = ft_appendstr(*ret, va_arg(arg, char *))) == 0, -1);
 	return(ft_strlen(*ret));
 }		
 
@@ -78,5 +80,6 @@ int			ft_vasprintf(char **ret, const char *fmt, va_list arg)
 		return (ft_strlen(fmt));
 	}
 	r = checkthrough(ret, fmt, arg);
+	printf("%d\n", r);
 	return (r);
 }
