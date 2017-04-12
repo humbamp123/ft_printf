@@ -13,7 +13,8 @@
 NAME = libftprintf.a
 
 FILENAMES = ft_printf.c printf_std.c ft_libfunct_1.c ft_libfunct_2.c \
-			ft_libfunct_3.c ft_libfunct_4.c vasprintf.c ft_printf_s.c
+			ft_libfunct_3.c ft_libfunct_4.c vasprintf.c ft_printf_s.c \
+			ft_printf_d.c
 INCLUDE_DIR = ./includes
 
 CC = gcc

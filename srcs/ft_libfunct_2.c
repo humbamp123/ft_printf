@@ -73,3 +73,24 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+	unsigned char	a;
+	unsigned char	b;
+
+	i = 0;
+	while (s2[i] != '\0' || s1[i] != '\0')
+	{
+		if (s1[i] != s2[i] && i < n)
+		{
+			a = s2[i];
+			b = s1[i];
+			return (b - a);
+		}
+		else
+			i++;
+	}
+	return (0);
+}

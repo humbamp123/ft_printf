@@ -21,51 +21,53 @@ static  char	type_ary[COUNT][SIZE] = {
 static int	(*funct_ptr[COUNT]) (char **ret, const char *fmt, va_list arg) = {
 	ft_printf_s, ft_printf_d};
 
-static int	flag_checker(char **ret, const char *fmt, va_list arg)
+static size_t	flag_checker(char **ret, const char *fmt, va_list arg)
 {
 	int			i;
-	char		*dumb;
 
 	i = 0;
-	dumb = (char *)fmt;
-	while (*type_ary)
+	while (i < COUNT)
 	{
-		if ((ft_strcmp(*type_ary, type_ary[i])) == 0)
+		if (*fmt && (ft_strncmp(fmt, type_ary[i], 1)) == 0)
 		{
+			fmt += i;
 			(*funct_ptr[i])(ret, fmt, arg);
-			break;
+			return(ft_strlen(type_ary[i]));
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 {
+	int				save;
+	int				i;
 	char			*temp;
-	size_t			spot;
 
-	spot = 0;
+	save = 0;
 	while (*fmt)
 	{
-		if ((temp = ft_strchr(fmt, '%')))
+		i = 0;
+		while (fmt[i] != '\0' && fmt[i] != '%')
+			i++;
+		temp = ft_strsub(fmt, 0, i);
+		ERR((*ret = ft_appendstr(*ret, temp)) == NULL, -1);
+		if (save != 0)
+			free(temp);
+		else
+			save = 1;
+		fmt += i;
+		if (*fmt == '%')
 		{
-			ERR((*ret = ft_strsub(fmt, spot, -(fmt - temp))) == 0, -1);
-			temp++;
-			if (*temp == 0)
+			if (*(++fmt) == 0)
 				break;
-			fmt = temp;
-			spot = 
+			ERW((i += flag_checker(ret, fmt, arg)) == -1, -1, "Flag Error");
 		}
-		ERR((spot = flag_checker(ret, fmt, arg)) == 0, -1);
-		break;
-		fmt++;
 	}
-	// ERR((*ret = ft_appendstr(*ret, va_arg(arg, char *))) == 0, -1);
 	return(ft_strlen(*ret));
 }		
 
-// *ret = ft_appendstr(*ret, va_arg(arg, char *));
 
 int			ft_vasprintf(char **ret, const char *fmt, va_list arg)
 {
@@ -80,6 +82,8 @@ int			ft_vasprintf(char **ret, const char *fmt, va_list arg)
 		return (ft_strlen(fmt));
 	}
 	r = checkthrough(ret, fmt, arg);
-	printf("%d\n", r);
+	// printf("%d\n", r);
 	return (r);
 }
+
+

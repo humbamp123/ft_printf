@@ -53,7 +53,9 @@ int		main(void)
 	// printf("append test\n");
 	// while (i < i_ll)
 	// {
-		ft_printf("sweet %ss ", c_str);
+		ft_printf("% ");
+		printf("\n");
+		ft_printf("SWEET %s cool %s\n", c_str, c_str);
 		// printf("%i\n", ft_printf("pits %s", c_str));
 	// 	i++;
 	// }

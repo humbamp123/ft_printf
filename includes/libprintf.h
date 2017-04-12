@@ -39,10 +39,13 @@
 # include <stdio.h>
 # define hex "0123456789ABCDEF"
 
-typedef struct		s_ft_printf {
+typedef struct		s_print {
 char				*fmt;
-char				*str;
-}					t_ft_printf;
+char				*ret;
+int					save;
+int					i;
+char				*temp;
+}					t_print;
 
 
 void				pl(char const *s);
@@ -64,9 +67,11 @@ char				*ft_appendstr(char *ret, char *str);
 char				*ft_appendnstr(const char *ret, int len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 
-int					ft_printf_s(char **ret, const char *fmt, va_list arg);
+int					ft_printf_s(t_print ret, const char *fmt, va_list arg);
+int					ft_printf_d(t_print ret, const char *fmt, va_list arg);
 
 #endif
