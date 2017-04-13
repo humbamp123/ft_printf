@@ -15,18 +15,17 @@ char		*ft_appendstr(t_print ret, char *str)
 {
 	char		*temp;
 
-
-	if (str && ret.fin)
+	if (str && ret.save)
 	{
 		// printf("###%s###\n", ret);
-		temp = ft_strjoin(ret.fin, str);
-		free(ret.fin);
-		ret.fin = temp;
+		temp = ft_strjoin(*ret.fin, str);
+		free(*ret.fin);
+		*ret.fin = temp;
 	}
-	else if (str && !(ret.fin))
+	else if (str && !(*ret.fin))
 	{
-		ret.fin = ft_strdup(str);
+		*ret.fin = ft_strdup(str);
 		free(str);
 	}
-	return (ret.fin);
+	return (*ret.fin);
 }

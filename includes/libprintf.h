@@ -41,7 +41,7 @@
 # define hex "0123456789ABCDEF"
 
 typedef struct		s_print {
-char				*fin;
+char				**fin;
 int					save;
 char				*temp;
 }					t_print;

@@ -16,7 +16,7 @@ int		ft_printf_s(t_print ret, const char *fmt, va_list arg)
 {
 	printf("_c\n");
 	// printf("%s\n", fmt);
-	ERW((ret.fin = ft_appendstr(ret, va_arg(arg, char *))) == 0, -1, "Appending Error");
+	ERW((*ret.fin = ft_appendstr(ret, va_arg(arg, char *))) == 0, -1, "Appending Error");
 	ft_strlen(fmt);
 	return (1);
 }
