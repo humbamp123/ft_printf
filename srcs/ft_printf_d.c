@@ -12,10 +12,10 @@
 
 #include "libprintf.h"
 
-int		ft_printf_d(char **ret, const char *fmt, va_list arg)
+int		ft_printf_d(t_print ret, const char *fmt, va_list arg)
 {
 	printf("_d\n");
-	ERW((*ret = ft_appendstr(*ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
+	ERW((ret.fin = ft_appendstr(ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
 	ft_strlen(fmt);
 	return (1);
 }

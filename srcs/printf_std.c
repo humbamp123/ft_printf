@@ -11,22 +11,22 @@
 /* ************************************************************************** */
 
 #include "libprintf.h"
-char		*ft_appendstr(char *ret, char *str)
+char		*ft_appendstr(t_print ret, char *str)
 {
 	char		*temp;
 
 
-	if (str && ret)
+	if (str && ret.fin)
 	{
 		// printf("###%s###\n", ret);
-		temp = ft_strjoin(ret, str);
-		free(ret);
-		ret = temp;
+		temp = ft_strjoin(ret.fin, str);
+		free(ret.fin);
+		ret.fin = temp;
 	}
-	else if (str && !(ret))
+	else if (str && !(ret.fin))
 	{
-		ret = ft_strdup(str);
+		ret.fin = ft_strdup(str);
 		free(str);
 	}
-	return (ret);
+	return (ret.fin);
 }
