@@ -37,6 +37,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdio.h>
+# include <stdint.h>
 # define hex "0123456789ABCDEF"
 
 typedef struct		s_print {
