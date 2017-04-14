@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_std.c                                       :+:      :+:    :+:   */
+/*   ft_libfunct_5.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/13 15:42:08 by apineda           #+#    #+#             */
-/*   Updated: 2017/03/13 15:42:29 by apineda          ###   ########.fr       */
+/*   Created: 2017/03/09 21:29:36 by apineda           #+#    #+#             */
+/*   Updated: 2017/03/09 21:29:55 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libprintf.h"
-char		*ft_appendstr(t_print *ret, char *str)
-{
-	char		*temp;
 
-	if (str && ret->save)
-	{
-		// printf("###%s###\n", ret);
-		temp = ft_strjoin(ret->fin, str);
-		free(ret->fin);
-		ret->fin = temp;
-	}
-	else if (str && !(ret->save))
-	{
-		ret->fin = ft_strdup(str);
-		free(str);
-	}
-	return (ret->fin);
+void	*ft_memalloc(size_t size)
+{
+	char	*str;
+
+	str = malloc(size);
+	if (str)
+		ft_bzero(str, size);
+	return (str);
 }

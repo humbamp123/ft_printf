@@ -18,10 +18,10 @@
 static  char	type_ary[COUNT][SIZE] = {
 	{"s"}, {"d"}};
 
-static int	(*funct_ptr[COUNT]) (t_print ret, const char *fmt, va_list arg) = {
+static int	(*funct_ptr[COUNT]) (t_print *ret, const char *fmt, va_list arg) = {
 	ft_printf_s, ft_printf_d};
 
-static size_t	flag_checker(t_print ret, const char *fmt, va_list arg)
+static size_t	flag_checker(t_print *ret, const char *fmt, va_list arg)
 {
 	int			i;
 
@@ -44,6 +44,7 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 	t_print		list;
 	int			i;
 
+
 	list.save = 0;
 	while (*fmt)
 	{
@@ -52,7 +53,7 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 			i++;
 		list.temp = ft_strsub(fmt, 0, i);
 		printf("%s\n", list.temp);
-		ERR((*list.fin = ft_appendstr(list, list.temp)) == NULL, -1);
+		ERR((list.fin = ft_appendstr(&list, list.temp)) == NULL, -1);
 		printf("%s\n", list.fin);
 		if (list.save != 0)
 			free(list.temp);
@@ -63,11 +64,11 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 		{
 			if (*(++fmt) == 0)
 				break;
-			ERW((i += flag_checker(list, fmt, arg)) == -1, -1, "Flag Error");
+			ERW((i += flag_checker(&list, fmt, arg)) == -1, -1, "Flag Error");
 		}
 	}
-	*ret = *list.fin;
-	return(ft_strlen(*list.fin));
+	*ret = list.fin;
+	return(ft_strlen(list.fin));
 }		
 
 

@@ -41,13 +41,14 @@
 # define hex "0123456789ABCDEF"
 
 typedef struct		s_print {
-char				**fin;
+char				*fin;
 int					save;
 char				*temp;
 }					t_print;
 
 
 void				pl(char const *s);
+void				*ft_memalloc(size_t size);
 int					ft_printf(const char *format, ...);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strcpy(char *dst, const char *src);
@@ -62,14 +63,14 @@ char				*ft_itoa_base(uintmax_t n, short base);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
-char				*ft_appendstr(t_print ret, char *str);
+char				*ft_appendstr(t_print *ret, char *str);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 
-int					ft_printf_s(t_print ret, const char *fmt, va_list arg);
-int					ft_printf_d(t_print ret, const char *fmt, va_list arg);
+int					ft_printf_s(t_print *ret, const char *fmt, va_list arg);
+int					ft_printf_d(t_print *ret, const char *fmt, va_list arg);
 
 #endif
