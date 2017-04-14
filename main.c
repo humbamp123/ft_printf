@@ -23,7 +23,7 @@ int		main(void)
 	// unsigned long	i_ulong;
 	unsigned long long	i_ull;
 	char	c;
-	char	c_str[6] = "test\0";
+	char	c_str[50] = "testing\0";
 	char	*c_ret;
 	unsigned char	c_uchr;
 	// unsigned char	*c_ustr;
@@ -54,8 +54,9 @@ int		main(void)
 	// while (i < i_ll)
 	// {
 		// ft_printf("% ");
+		// printf("%p", c_str);
 		// printf("\n");
-		ft_printf("SWEET %s cool %s\n", c_str, c_str);
+		ft_printf("%p", c_str);
 		// printf("%i\n", ft_printf("pits %s", c_str));
 	// 	i++;
 	// }

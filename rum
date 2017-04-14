@@ -1,1 +1,1 @@
- gcc -o test_printf -I ./includes main.c srcs/ft_printf.c srcs/printf_std.c srcs/ft_libfunct_1.c srcs/ft_libfunct_2.c srcs/ft_libfunct_3.c srcs/ft_libfunct_4.c srcs/ft_libfunct_5.c srcs/vasprintf.c srcs/ft_printf_s.c srcs/ft_printf_d.c -g
+ gcc -o test_printf -I ./includes main.c srcs/ft_printf.c srcs/printf_std.c srcs/ft_libfunct_1.c srcs/ft_libfunct_2.c srcs/ft_libfunct_3.c srcs/ft_libfunct_4.c srcs/ft_libfunct_5.c srcs/vasprintf.c srcs/ft_printf_s.c srcs/ft_printf_d.c srcs/ft_printf_p.c -g

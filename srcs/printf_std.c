@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libprintf.h"
-char		*ft_appendstr(t_print *ret, char *str)
+char		*ft_appendit(t_print *ret, char *str)
 {
 	char		*temp;
 
@@ -28,4 +28,23 @@ char		*ft_appendstr(t_print *ret, char *str)
 		free(str);
 	}
 	return (ret->fin);
+}
+
+char		*ft_appender(char *ret, char *str)
+{
+	char	*temp;
+
+	if (str && ret)
+	{
+		// printf("###%s###\n", ret);
+		temp = ft_strjoin(ret, str);
+		free(ret);
+		ret = temp;
+	}
+	else if (str && !(ret))
+	{
+		ret = ft_strdup(str);
+		free(str);
+	}
+	return (ret);
 }

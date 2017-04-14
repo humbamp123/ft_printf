@@ -15,27 +15,29 @@
 #define COUNT 39
 #define SIZE 3
 
-static  char	type_ary[COUNT][SIZE] = {
-	{"s"}, {"d"}};
+static  char	ary[COUNT][SIZE] = {
+	{"s"}, {"d"}, {"p"}};
 
-static int	(*funct_ptr[COUNT]) (t_print *ret, const char *fmt, va_list arg) = {
-	ft_printf_s, ft_printf_d};
+static int	(*funct_ptr[COUNT]) (t_print *ret, const char **fmt, va_list arg) = {
+	ft_printf_s, ft_printf_d, ft_printf_p};
 
-static size_t	flag_checker(t_print *ret, const char *fmt, va_list arg)
+static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 {
 	int			i;
 
 	i = 0;
 	while (i < COUNT)
 	{
-		if (*fmt && (ft_strncmp(fmt, type_ary[i], 1)) == 0)
+		if (**fmt && (ft_strncmp(*fmt, ary[i], ft_strlen(ary[i]))) == 0)
 		{
-			fmt += i;
+			*fmt += ft_strlen(ary[i]);
+			printf("here\n");
 			(*funct_ptr[i])(ret, fmt, arg);
-			return(ft_strlen(type_ary[i]));
+			return(1);
 		}
 		i++;
 	}
+	ERR(**fmt == 0, 0);
 	return (0);
 }
 
@@ -44,17 +46,15 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 	t_print		list;
 	int			i;
 
-
 	list.save = 0;
 	while (*fmt)
 	{
 		i = 0;
 		while (fmt[i] != '\0' && fmt[i] != '%')
 			i++;
-		list.temp = ft_strsub(fmt, 0, i);
-		printf("%s\n", list.temp);
-		ERR((list.fin = ft_appendstr(&list, list.temp)) == NULL, -1);
-		printf("%s\n", list.fin);
+		// printf("%p\n", list.temp);
+		ERR((list.temp = ft_strsub(fmt, 0, i)) == NULL, -1);
+		ERR((list.fin = ft_appendit(&list, list.temp)) == NULL, -1);
 		if (list.save != 0)
 			free(list.temp);
 		else
@@ -64,7 +64,7 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 		{
 			if (*(++fmt) == 0)
 				break;
-			ERW((i += flag_checker(&list, fmt, arg)) == -1, -1, "Flag Error");
+			ERW((i += flag_checker(&list, &fmt, arg)) == -1, -1, "Flag Error");
 		}
 	}
 	*ret = list.fin;
