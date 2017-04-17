@@ -17,7 +17,6 @@ char		*ft_appendit(t_print *ret, char *str)
 
 	if (str && ret->save)
 	{
-		// printf("###%s###\n", ret);
 		temp = ft_strjoin(ret->fin, str);
 		free(ret->fin);
 		ret->fin = temp;
@@ -36,7 +35,6 @@ char		*ft_appender(char *ret, char *str)
 
 	if (str && ret)
 	{
-		// printf("###%s###\n", ret);
 		temp = ft_strjoin(ret, str);
 		free(ret);
 		ret = temp;

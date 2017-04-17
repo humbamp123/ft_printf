@@ -15,13 +15,11 @@
 int				ft_printf_p(t_print *ret, const char **fmt, va_list arg)
 {
 	char	*temp;
-	int		temper;
+	void	*temper;
 
 	temp = ft_strdup("0x\0");
-	printf("_p\n");
-	temper = va_arg(arg, unsigned int);
-	printf("%p", temper);
-	ERW((temp = ft_appender(temp, ft_itoa_base(temper, 16))) == 0, -1, "Appending Error");
+	temper = va_arg(arg, void *);
+	ERW((temp = ft_appender(temp, ft_itoa_base((uintmax_t)temper, 16))) == 0, -1, "Appending Error");
 	ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
 	if (**fmt != 0)
 		ft_strlen(*fmt);
