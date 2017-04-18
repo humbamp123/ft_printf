@@ -2,3 +2,5 @@ make fclean && make
 clang -I includes/ -o main.o -c main.c -g 
 clang -o test_printf main.o libftprintf.a -I includes/ -g
 rm main.o
+./test_printf
+rm test_printf

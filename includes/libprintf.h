@@ -71,6 +71,8 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_printf_s(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_d(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_p(t_print *ret, const char **fmt, va_list arg);
+int					ft_printf_per(t_print *ret, const char **fmt, va_list arg);
+
 
 char				*ft_appendit(t_print *ret, char *str);
 char				*ft_appender(char *ret, char *str);

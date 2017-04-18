@@ -54,9 +54,14 @@ int		main(void)
 	// while (i < i_ll)
 	// {
 		// ft_printf("% ");
+		printf("%d\n", i_int);
+		ft_printf("%d\n", i_int);
+		printf("%s\n", c_str);
+		ft_printf("%s\n", c_str);
 		printf("%p\n", c_str);
-		// printf("\n");
 		ft_printf("%p\n", c_str);
+		printf("%%\n");
+		ft_printf("%%\n");
 		// printf("%i\n", ft_printf("pits %s", c_str));
 	// 	i++;
 	// }

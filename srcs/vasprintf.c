@@ -16,10 +16,10 @@
 #define SIZE 3
 
 static  char	ary[COUNT][SIZE] = {
-	{"s"}, {"d"}, {"p"}};
+	{"s"}, {"d"}, {"p"}, {"%"}};
 
 static int	(*funct_ptr[COUNT]) (t_print *ret, const char **fmt, va_list arg) = {
-	ft_printf_s, ft_printf_d, ft_printf_p};
+	ft_printf_s, ft_printf_d, ft_printf_p, ft_printf_per};
 
 static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 {
@@ -30,9 +30,10 @@ static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 	{
 		if (**fmt && (ft_strncmp(*fmt, ary[i], ft_strlen(ary[i]))) == 0)
 		{
-			*fmt += ft_strlen(ary[i]);
-			printf("here\n");
+			// printf("%c\n", **fmt);
+			// printf("here\n");
 			(*funct_ptr[i])(ret, fmt, arg);
+			// printf("%c\n", **fmt);
 			return(1);
 		}
 		i++;

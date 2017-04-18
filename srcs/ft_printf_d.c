@@ -16,7 +16,6 @@ int		ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
 	printf("_d\n");
 	ERW((ret->fin = ft_appendit(ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
-	if (**fmt != 0)
-		ft_strlen(*fmt);
+	(*fmt)++;
 	return (1);
 }

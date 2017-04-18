@@ -21,7 +21,6 @@ int				ft_printf_p(t_print *ret, const char **fmt, va_list arg)
 	temper = va_arg(arg, void *);
 	ERW((temp = ft_appender(temp, ft_itoa_base((uintmax_t)temper, 16))) == 0, -1, "Appending Error");
 	ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
-	if (**fmt != 0)
-		ft_strlen(*fmt);
+	(*fmt)++;
 	return (1);
 }
