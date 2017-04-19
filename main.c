@@ -32,6 +32,7 @@ int		main(void)
 	float	f_float;
 	double	d_double;
 	long double	ld_ldouble;
+	uint8_t	temp;
 
 	i_int = 88;
 	i_uint = 2147483650;
@@ -54,14 +55,30 @@ int		main(void)
 	// while (i < i_ll)
 	// {
 		// ft_printf("% ");
-		printf("%d\n", i_int);
-		ft_printf("%d\n", i_int);
-		printf("%s\n", c_str);
-		ft_printf("%s\n", c_str);
-		printf("%p\n", c_str);
-		ft_printf("%p\n", c_str);
-		printf("%%\n");
-		ft_printf("%%\n");
+		
+		// ft_printf("ft_printf \"%d\"\n", i_int);
+		// printf("printf \"%d\"\n", i_int);
+		
+		// ft_printf("ft_printf \"%s\"\n", c_str);
+		// printf("printf \"%s\"\n", c_str);
+		
+		// ft_printf("ft_printf \"%p\"\n", c_str);
+		// printf("printf \"%p\"\n", c_str);
+		
+		// ft_printf("ft_printf \"%%\"\n");
+		// printf("printf \"%%\"\n");
+		// temp &= ~0x10;
+		// printf("%d\n", temp);
+		// temp |= 0x1;
+		ft_printf("%-\n");
+		// ft_printf("%\n");
+		// printf("%\n");
+
+		// ft_printf("%Z");
+		// printf("\n");
+		// printf("%-d", i_int);
+		// printf("\n");
+
 		// printf("%i\n", ft_printf("pits %s", c_str));
 	// 	i++;
 	// }

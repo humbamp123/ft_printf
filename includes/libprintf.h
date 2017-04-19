@@ -40,10 +40,21 @@
 # include <stdint.h>
 # define hex "0123456789abcdef"
 
-typedef struct		s_print {
+typedef struct 		s_flags
+{
+	short				minus;
+	short				space;
+	short				plus;
+	short				pound;
+	short				zero;
+}					t_flags;
+
+typedef struct		s_print 
+{
 char				*fin;
 int					save;
 char				*temp;
+t_flags				flags;
 }					t_print;
 
 
@@ -65,14 +76,18 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
-int					ft_strncmp(const char *s1, const char *s2, size_t n);
+char				*ft_strnstr(const char *big, const char *tiny, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 
+int					ft_printf_c(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_s(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_d(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_p(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_per(t_print *ret, const char **fmt, va_list arg);
-
+int					ft_printf_o(t_print *ret, const char **fmt, va_list arg);
+int					ft_printf_u(t_print *ret, const char **fmt, va_list arg);
+int					ft_printf_x(t_print *ret, const char **fmt, va_list arg);
+int					ft_printf_flags(t_print *ret, const char **fmt, va_list arg);
 
 char				*ft_appendit(t_print *ret, char *str);
 char				*ft_appender(char *ret, char *str);

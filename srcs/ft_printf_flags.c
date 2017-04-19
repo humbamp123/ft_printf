@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_s.c                                      :+:      :+:    :+:   */
+/*   ft_printf_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,20 @@
 
 #include "libprintf.h"
 
-int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
+int		ft_printf_flags(t_print *ret, const char **fmt, va_list arg)
 {
-	char	*temp;
-	char	*temper;
-	// printf("_s_S\n");
-	// printf("%s\n", fmt);
-	
-	temp = (va_arg(arg, char *));
-	if (temp)
-		ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
-	else
+	while (**fmt && (**fmt == ' ' || **fmt == '-' || **fmt == '+' || 
+		**fmt == '#' || **fmt == '0'))
 	{
-		temper = ft_strdup("(null)\0");
-		ERW((ret->fin = ft_appendit(ret, temper)) == 0, -1, "Appending Error");
+		ret->flags.minus = **fmt == '-' ? 1 : ret->flags.minus;
+		ret->flags.space = **fmt == ' ' ? 1 : ret->flags.space;
+		ret->flags.plus = **fmt == '+' ? 1 : ret->flags.plus;
+		ret->flags.pound = **fmt == '#' ? 1 : ret->flags.pound;
+		ret->flags.zero = **fmt == '0' ? 1 : ret->flags.zero;
+		(*fmt)++;
 	}
-	(*fmt)++;
+	ret->flags.minus = 1;
 	return (1);
+	(void)ret;
+	(void)arg;
 }

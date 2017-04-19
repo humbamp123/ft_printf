@@ -22,7 +22,7 @@ int		ft_printf(const char *format, ...)
 	ERR(format == 0 || *format == 0, 0);
 	va_start(args, format);
 	ERW((i = ft_vasprintf(&str, format, args)) == -1, -1, "Vasprintf Error");
-	printf("== %d == \n", i);
+	// printf("== %d == \n", i);
 	ERW1(write(1, str, i) == -1, va_end(args), -1, "Write Error");
 	// free(str);
 	va_end(args);

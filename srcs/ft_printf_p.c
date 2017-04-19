@@ -17,10 +17,21 @@ int				ft_printf_p(t_print *ret, const char **fmt, va_list arg)
 	char	*temp;
 	void	*temper;
 
-	temp = ft_strdup("0x\0");
-	temper = va_arg(arg, void *);
-	ERW((temp = ft_appender(temp, ft_itoa_base((uintmax_t)temper, 16))) == 0, -1, "Appending Error");
-	ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
-	(*fmt)++;
+	if (**fmt == '%')
+	{
+		// printf("_%%\n");
+		temp = ft_strdup("%\0");
+		ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
+		(*fmt)++;
+	}
+	else if (**fmt == 'p')
+	{
+		// printf("_p\n");
+		temp = ft_strdup("0x\0");
+		temper = va_arg(arg, void *);
+		ERW((temp = ft_appender(temp, ft_itoa_base((uintmax_t)temper, 16))) == 0, -1, "Appending Error");
+		ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
+		(*fmt)++;
+	}
 	return (1);
 }

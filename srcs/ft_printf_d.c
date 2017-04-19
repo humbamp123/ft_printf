@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_s.c                                      :+:      :+:    :+:   */
+/*   ft_printf_d.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,8 +14,11 @@
 
 int		ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
-	printf("_d\n");
-	ERW((ret->fin = ft_appendit(ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
+	// printf("_d_i\n");
+	if (**fmt == 'i' || **fmt == 'd')
+		ERW((ret->fin = ft_appendit(ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
+	else if (**fmt == 'u')
+		ERW((ret->fin = ft_appendit(ret, ft_itoa(va_arg(arg, unsigned int)))) == 0, -1, "Appending Error");
 	(*fmt)++;
 	return (1);
 }

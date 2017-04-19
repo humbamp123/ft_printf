@@ -74,23 +74,31 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+char		*ft_strnstr(const char *big, const char *tiny, size_t len)
 {
-	unsigned int	i;
-	unsigned char	a;
-	unsigned char	b;
+	int		iter[2];
 
-	i = 0;
-	while (s2[i] != '\0' || s1[i] != '\0')
-	{
-		if (s1[i] != s2[i] && i < n)
+	ft_bzero((void*)iter, sizeof(int) * 2);
+	if (tiny[iter[0]] == '\0')
+		return ((char *)big);
+	while (big[iter[0]] != '\0' && len)
+		if (big[iter[0]] == tiny[iter[1]])
 		{
-			a = s2[i];
-			b = s1[i];
-			return (b - a);
+			if (tiny[iter[1] + 1] == '\0')
+				return ((char *)&big[iter[0] - iter[1]]);
+			iter[0]++;
+			iter[1]++;
+			len--;
 		}
 		else
-			i++;
-	}
+		{
+			if (iter[1] > 0)
+				iter[0] = iter[0] - iter[1];
+			if (iter[1] > 0)
+				len = len + iter[1];
+			iter[0]++;
+			iter[1] = 0;
+			len--;
+		}
 	return (0);
 }
