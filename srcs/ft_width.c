@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_d.c                                      :+:      :+:    :+:   */
+/*   ft_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,41 @@
 
 #include "libprintf.h"
 
-int		ft_printf_d(t_print *ret, const char **fmt, va_list arg)
+int		ft_width(t_print *ret, const char **fmt, va_list arg)
 {
-	// printf("_d_i\n");
-	if (ret->flags.precision > 0)
-		printf("test precision\n");
-	if (ret->flags.width)
-		printf("test width\n");
-	if (ret->flags.flgs)
-		printf("test flags\n");
-	ERW((ret->fin = ft_appendit(ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
-	(*fmt)++;
-	return (1);
+	if (**fmt == '*')
+	{
+		ret->flags.width = va_arg(arg, int);
+		if (ret->flags.width < 0)
+		{
+			ret->flags.flgs = 1;
+			ret->flags.minus = 1;
+		}
+		(*fmt)++;
+	}
+	else
+	{
+		ret->flags.width = ft_atoi(*fmt);
+		(*fmt) += ft_nbrlen(ret->flags.width);
+	}
+	return (0);
+}
+
+int		ft_precision(t_print *ret, const char **fmt, va_list arg)
+{
+	if (**fmt == '.' && *((*fmt) + 1) == '*')
+	{
+		ret->flags.precision = va_arg(arg, int);
+		fmt += 2;
+	}
+	else if (ft_isdigit(*((*fmt) + 1)))
+	{
+		ret->flags.precision = ft_atoi(*fmt);
+		(*fmt) += ft_nbrlen(ret->flags.precision) + 1;
+	}
+	else
+	{
+		(*fmt)++;
+	}
+	return (0);
 }

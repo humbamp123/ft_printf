@@ -22,10 +22,9 @@ int		ft_printf_flags(t_print *ret, const char **fmt, va_list arg)
 		ret->flags.plus = **fmt == '+' ? 1 : ret->flags.plus;
 		ret->flags.pound = **fmt == '#' ? 1 : ret->flags.pound;
 		ret->flags.zero = **fmt == '0' ? 1 : ret->flags.zero;
-		(*fmt)++;
+		ret->flags.flgs = 1;
+		++(*fmt);
 	}
-	ret->flags.minus = 1;
-	return (1);
-	(void)ret;
+	return (0);
 	(void)arg;
 }

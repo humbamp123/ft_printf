@@ -34,7 +34,7 @@ int		main(void)
 	long double	ld_ldouble;
 	uint8_t	temp;
 
-	i_int = 88;
+	i_int = -2147483645;
 	i_uint = 2147483650;
 	i_long = 2147483650;
 	i_ll = 9223372036854775807;
@@ -50,7 +50,10 @@ int		main(void)
 	d_double = 2.12345678901234;
 	ld_ldouble = 2.123456789012345678901;
 	
-	i = 88;
+	i = 0;
+
+	printf("%d",printf("%.*u", 0, i));
+	// IF PRECISION IS ZERO and ZERO is the value no character is written
 	// printf("append test\n");
 	// while (i < i_ll)
 	// {
@@ -70,7 +73,9 @@ int		main(void)
 		// temp &= ~0x10;
 		// printf("%d\n", temp);
 		// temp |= 0x1;
-		ft_printf("%-\n");
+		// ft_printf("%d\n", ft_atoi("2147483647"));
+		// printf("%d\n", i);
+		// printf("%d",printf("%*d\n", 015, i_int));
 		// ft_printf("%\n");
 		// printf("%\n");
 
