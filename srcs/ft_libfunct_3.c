@@ -31,7 +31,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-static int	ft_nbrlen(intmax_t num)
+int			ft_nbrlen(intmax_t num)
 {
 	int		flag;
 

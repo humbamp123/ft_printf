@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_flags.c                                      :+:      :+:    :+:   */
+/*   ft_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,17 @@
 
 #include "libprintf.h"
 
-int		ft_printf_flags(t_print *ret, const char **fmt, va_list arg)
+int		ft_width(t_print *ret, const char **fmt, va_list arg)
 {
-	while (**fmt && (**fmt == ' ' || **fmt == '-' || **fmt == '+' || 
-		**fmt == '#' || **fmt == '0'))
+	if (**fmt == '*')
 	{
-		ret->flags.minus = **fmt == '-' ? 1 : ret->flags.minus;
-		ret->flags.space = **fmt == ' ' ? 1 : ret->flags.space;
-		ret->flags.plus = **fmt == '+' ? 1 : ret->flags.plus;
-		ret->flags.pound = **fmt == '#' ? 1 : ret->flags.pound;
-		ret->flags.zero = **fmt == '0' ? 1 : ret->flags.zero;
-		++(*fmt);
+		ret->flags.width = va_arg(arg, int);
+		(*fmt)++;
+	}
+	else
+	{
+		ret->flags.width = ft_atoi(*fmt);
+		(*fmt) += ft_nbrlen(ret->flags.width);
 	}
 	return (0);
-	(void)arg;
 }
