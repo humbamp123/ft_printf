@@ -33,6 +33,7 @@ static int	(*funct_ptr[COUNT]) (t_print *ret, const char **fmt, va_list arg) =
  		ft_printf_o, ft_printf_x, ft_printf_c, ft_printf_p,
  		ft_printf_p};
 
+
 static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 {
 	int			i;
