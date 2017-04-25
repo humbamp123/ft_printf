@@ -26,16 +26,21 @@ static int	ft_d_width(t_print *ret)
 
 static int	ft_d_precision(t_print *ret)
 {
-	char *temp;
+	char	*temp;
 
 	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) < ret->flags.pres)
+	{
 		temp = ft_strnew(ret->flags.pres - (int)ft_strlen(ret->tmp));
+		if (ret->flags.minus)
+			ft_appender(temp, ret->fin);
+	}
 	return (0);
 }
 
 int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->tmp = ft_itoa(va_arg(arg, int));
+	ret->var = (void *)va_arg(arg, int);
+	// ret->tmp = ft_itoa(ret->var);
 	if (ret->flags.in_pres == 1)
 		ft_d_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)

@@ -58,6 +58,7 @@ typedef struct		s_print
 char				*fin;
 int					save;
 char				*tmp;
+void				*var;
 t_flags				flags;
 }					t_print;
 
