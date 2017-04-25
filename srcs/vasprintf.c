@@ -66,10 +66,10 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 		i = 0;
 		while (fmt[i] != '\0' && fmt[i] != '%')
 			i++;
-		ERR((list.temp = ft_strsub(fmt, 0, i)) == NULL, -1);
-		ERR((list.fin = ft_appendit(&list, list.temp)) == NULL, -1);
+		ERR((list.tmp = ft_strsub(fmt, 0, i)) == NULL, -1);
+		ERR((list.fin = ft_appendit(&list, list.tmp)) == NULL, -1);
 		if (list.save != 0)
-			free(list.temp);
+			free(list.tmp);
 		else
 			list.save = 1;
 		fmt += i;

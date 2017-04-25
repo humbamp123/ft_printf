@@ -12,16 +12,36 @@
 
 #include "libprintf.h"
 
-int		ft_printf_d(t_print *ret, const char **fmt, va_list arg)
+static int	ft_d_flags(t_print *ret)
 {
-	// printf("_d_i\n");
-	if (ret->flags.precision > 0)
-		printf("test precision\n");
-	if (ret->flags.width)
-		printf("test width\n");
-	if (ret->flags.flgs)
-		printf("test flags\n");
-	ERW((ret->fin = ft_appendit(ret, ft_itoa(va_arg(arg, int)))) == 0, -1, "Appending Error");
+	(void)ret;
+	return (0);
+}
+
+static int	ft_d_width(t_print *ret)
+{
+	(void)ret;
+	return (0);
+}
+
+static int	ft_d_precision(t_print *ret)
+{
+	char *temp;
+
+	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) < ret->flags.pres)
+		temp = ft_strnew(ret->flags.pres - (int)ft_strlen(ret->tmp));
+	return (0);
+}
+
+int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
+{
+	ret->tmp = ft_itoa(va_arg(arg, int));
+	if (ret->flags.in_pres == 1)
+		ft_d_precision(ret);
+	if (ret->flags.width && ret->flags.width > ret->flags.pres)
+		ft_d_width(ret);
+	if (ret->flags.flgs && ret->flags.in_pres == 0 && ret->flags.width == 0)
+		ft_d_flags(ret);
 	(*fmt)++;
 	return (1);
 }

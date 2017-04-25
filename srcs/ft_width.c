@@ -36,17 +36,18 @@ int		ft_precision(t_print *ret, const char **fmt, va_list arg)
 {
 	if (**fmt == '.' && *((*fmt) + 1) == '*')
 	{
-		ret->flags.precision = va_arg(arg, int);
+		ret->flags.pres = va_arg(arg, int);
 		fmt += 2;
 	}
 	else if (ft_isdigit(*((*fmt) + 1)))
 	{
-		ret->flags.precision = ft_atoi(*fmt);
-		(*fmt) += ft_nbrlen(ret->flags.precision) + 1;
+		ret->flags.pres = ft_atoi(*fmt);
+		(*fmt) += ft_nbrlen(ret->flags.pres) + 1;
 	}
 	else
 	{
 		(*fmt)++;
 	}
+	ret->flags.in_pres = 1;
 	return (0);
 }

@@ -49,14 +49,15 @@ typedef struct 		s_flags
 	short			zero;
 	short			flgs;
 	int				width;
-	int				precision;
+	int				pres;
+	int				in_pres;
 }					t_flags;
 
 typedef struct		s_print 
 {
 char				*fin;
 int					save;
-char				*temp;
+char				*tmp;
 t_flags				flags;
 }					t_print;
 
