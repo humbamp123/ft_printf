@@ -22,18 +22,19 @@ static int	ft_d_width(t_print *ret)
 {
 	int		spacelen;
 	char	*temp;
+	char	chr;
 
-	if (ret->flags.width)
+	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus ?
+		ret->flags.width - (int)ft_strlen(ret->fin) -1 : ret->flags.width -
+		(int)ft_strlen(ret->fin);
+	temp = ft_strnew(spacelen + 1);
+	chr = 
+	if (ret->flags.in_pres)
 	{
-		spacelen = ret->flags.pres - ret->flags.width;
-		temp = ft_strnew(spacelen);
 		ft_memset(temp, ' ', spacelen);
-		ret->temp = ft_appender(temp, ret->tmp);
+		ret->tmp = ft_appender(temp, ret->tmp);
 	}	
-	else
-	{
-		spacelen = 
-	}
+	(void)ret;
 	return (0);
 }
 
@@ -45,7 +46,7 @@ static int	ft_d_precision(t_print *ret)
 	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) < ret->flags.pres)
 	{
 		zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp);
-		temp = ft_strnew(zerolen);
+		temp = ft_strnew(zerolen + 1);
 		ft_memset(temp, '0', zerolen);
 		if (ret->flags.zero && !ret->neg)
 			ret->tmp = ft_appender(temp, ret->tmp);
@@ -55,10 +56,10 @@ static int	ft_d_precision(t_print *ret)
 				ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), temp) :
 					ft_appender(ft_strdup("+\0"), temp);
 			else if (ret->flags.space)
-				ret->temp = ft_appender(ft_strdup(" \0"), temp);
-			ret->temp = ft_appender(temp, ret->tmp);
+				ret->tmp = ft_appender(ft_strdup(" \0"), temp);
+			ret->tmp = ft_appender(temp, ret->tmp);
 		}
-		ret->flags.pres = ft_strlen(ret->temp);
+		ret->flags.pres = ft_strlen(ret->tmp);
 	}
 	return (0);
 }
@@ -70,11 +71,12 @@ int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 	ret->tmp = ret->neg == 1 ? ft_itoa(-(int)ret->var) : ft_itoa((int)ret->var);
 	if (ret->flags.in_pres == 1)
 		ft_d_precision(ret);
-	if (ret->flags.width && ret->flags.width > ret->flags.pres)
+	if (ret->flags.width && ret->flags.width > ret->flags.pres &&
+		ret->flags.width > (int)ft_strlen(ret->fin))
 		ft_d_width(ret);
 	if (ret->flags.flgs && ret->flags.in_pres == 0 && ret->flags.width == 0)
 		ft_d_flags(ret);
-	ret->fin = ft_appender(ret->fin, ret->temp);
+	ret->fin = ft_appender(ret->fin, ret->tmp);
 	(*fmt)++;
 	return (1);
 }

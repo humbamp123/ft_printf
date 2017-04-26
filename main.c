@@ -52,8 +52,23 @@ int		main(void)
 	
 	i = 1;
 
-	ft_printf("ft_printf %6.5d\n", -11);
-	printf("printf %7.5d\n", -11);
+	// ft_printf("ft_printf %06.5d\n", -11);
+
+	// Zeros
+
+	printf("printf %07d-\n", -11);
+	printf("printf %07.5d-\n", -11);
+
+	// 
+
+	printf("printf %-07d-\n", 11);
+	printf("printf %-07.5d-\n", 11);	
+
+	printf("printf %-+07d-\n", 11);
+	printf("printf %-+07.5d-\n", 11);	
+	
+	printf("printf %#7d-\n", 11);
+	printf("printf %#7.5d-\n", 11);	
 
 	// printf("%d\n",printf("%.d", i_int));
 	// printf("\n");
