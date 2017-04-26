@@ -5,5 +5,5 @@ rm main.o
 cp libftprintf.a ../ft_printf_main
 ./test_printf
 rm test_printf
-make -C ../ft_printf_main re
-./../ft_printf_main/user_printf
+# make -C ../ft_printf_main re
+# ./../ft_printf_main/user_printf

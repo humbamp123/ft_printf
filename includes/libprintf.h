@@ -58,7 +58,10 @@ typedef struct		s_print
 char				*fin;
 int					save;
 char				*tmp;
-void				*var;
+char				*text;
+char				*varchar;
+uintmax_t			var;
+short				neg;
 t_flags				flags;
 }					t_print;
 
@@ -77,13 +80,13 @@ void				ft_bzero(void *s, size_t n);
 int					ft_nbrlen(intmax_t num);
 char				*ft_itoa(intmax_t nbr);
 char				*ft_itoa_base(uintmax_t n, short base);
-void				*ft_memmove(void *dst, const void *src, size_t len);
+void				ft_strdel(char **as);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcat(char *dst, const char *src);
 char				*ft_strnstr(const char *big, const char *tiny, size_t len);
-int					ft_strcmp(const char *s1, const char *s2);
+void				ft_memdel(void **ap);
 int					ft_isdigit(int c);
 int					ft_atoi(const char *str);
 

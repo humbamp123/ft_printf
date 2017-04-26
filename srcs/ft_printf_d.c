@@ -20,33 +20,61 @@ static int	ft_d_flags(t_print *ret)
 
 static int	ft_d_width(t_print *ret)
 {
-	(void)ret;
+	int		spacelen;
+	char	*temp;
+
+	if (ret->flags.width)
+	{
+		spacelen = ret->flags.pres - ret->flags.width;
+		temp = ft_strnew(spacelen);
+		ft_memset(temp, ' ', spacelen);
+		ret->temp = ft_appender(temp, ret->tmp);
+	}	
+	else
+	{
+		spacelen = 
+	}
 	return (0);
 }
 
 static int	ft_d_precision(t_print *ret)
 {
 	char	*temp;
+	int		zerolen;
 
 	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) < ret->flags.pres)
 	{
-		temp = ft_strnew(ret->flags.pres - (int)ft_strlen(ret->tmp));
-		if (ret->flags.minus)
-			ft_appender(temp, ret->fin);
+		zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp);
+		temp = ft_strnew(zerolen);
+		ft_memset(temp, '0', zerolen);
+		if (ret->flags.zero && !ret->neg)
+			ret->tmp = ft_appender(temp, ret->tmp);
+		else 
+		{
+			if (ret->flags.plus || ret->neg)
+				ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), temp) :
+					ft_appender(ft_strdup("+\0"), temp);
+			else if (ret->flags.space)
+				ret->temp = ft_appender(ft_strdup(" \0"), temp);
+			ret->temp = ft_appender(temp, ret->tmp);
+		}
+		ret->flags.pres = ft_strlen(ret->temp);
 	}
 	return (0);
 }
 
 int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->var = (void *)va_arg(arg, int);
-	// ret->tmp = ft_itoa(ret->var);
+	ret->var = va_arg(arg, int);
+	ret->neg = (int)ret->var < 0 ? 1 : 0;
+	ret->tmp = ret->neg == 1 ? ft_itoa(-(int)ret->var) : ft_itoa((int)ret->var);
 	if (ret->flags.in_pres == 1)
 		ft_d_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)
 		ft_d_width(ret);
 	if (ret->flags.flgs && ret->flags.in_pres == 0 && ret->flags.width == 0)
 		ft_d_flags(ret);
+	ret->fin = ft_appender(ret->fin, ret->temp);
 	(*fmt)++;
 	return (1);
 }

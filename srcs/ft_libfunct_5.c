@@ -12,7 +12,7 @@
 
 #include "libprintf.h"
 
-void	*ft_memalloc(size_t size)
+void			*ft_memalloc(size_t size)
 {
 	char	*str;
 
@@ -22,7 +22,7 @@ void	*ft_memalloc(size_t size)
 	return (str);
 }
 
-int		ft_isdigit(int c)
+int				ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }

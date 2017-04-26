@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_flags.c                                      :+:      :+:    :+:   */
+/*   ft_printf_flags.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,7 @@
 
 int		ft_printf_flags(t_print *ret, const char **fmt, va_list arg)
 {
-	while (**fmt && (**fmt == ' ' || **fmt == '-' || **fmt == '+' || 
+	while (**fmt && (**fmt == ' ' || **fmt == '-' || **fmt == '+' ||
 		**fmt == '#' || **fmt == '0'))
 	{
 		ret->flags.minus = **fmt == '-' ? 1 : ret->flags.minus;

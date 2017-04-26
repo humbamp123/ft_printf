@@ -15,12 +15,11 @@
 int		ft_printf_c(t_print *ret, const char **fmt, va_list arg)
 {
 	char	*temp;
-	
-	// printf("_c\n");
+
 	temp = ft_strnew(2);
 	temp[0] = va_arg(arg, int);
 	temp[1] = 0;
-	ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
+	ERW((ret->fin = ft_appender(ret->fin, temp)) == 0, -1, "Appending Error");
 	(*fmt)++;
 	return (1);
 }

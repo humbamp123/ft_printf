@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_per.c                                      :+:      :+:    :+:   */
+/*   ft_printf_per.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,7 +18,7 @@ int		ft_printf_per(t_print *ret, const char **fmt, va_list arg)
 
 	printf("_%%\n");
 	temp = ft_strdup("%\0");
-	ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
+	ERW((ret->fin = ft_appender(ret->fin, temp)) == 0, -1, "Appending Error");
 	(*fmt)++;
 	return (1);
 }

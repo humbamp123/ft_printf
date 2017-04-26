@@ -63,21 +63,11 @@ char	*ft_strcat(char *dst, const char *src)
 	return (dst);
 }
 
-int		ft_strcmp(const char *s1, const char *s2)
+void	ft_memdel(void **ap)
 {
-	unsigned char	a;
-	unsigned char	b;
-
-	while (*s2 || *s1)
+	if (ap)
 	{
-		if (*s1 != *s2)
-		{
-			a = *s2;
-			b = *s1;
-			return (b - a);
-		}
-		s1++;
-		s2++;
+		free(*ap);
+		*ap = 0;
 	}
-	return (0);
 }

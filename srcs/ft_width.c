@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_width.c                                      :+:      :+:    :+:   */
+/*   ft_width.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -39,12 +39,13 @@ int		ft_precision(t_print *ret, const char **fmt, va_list arg)
 		ret->flags.pres = va_arg(arg, int);
 		fmt += 2;
 	}
-	else if (ft_isdigit(*((*fmt) + 1)))
+	else if (**fmt == '.' && ft_isdigit(*((*fmt) + 1)))
 	{
+		(*fmt)++;
 		ret->flags.pres = ft_atoi(*fmt);
-		(*fmt) += ft_nbrlen(ret->flags.pres) + 1;
+		(*fmt) += ft_nbrlen(ret->flags.pres);
 	}
-	else
+	else if (**fmt == '.')
 	{
 		(*fmt)++;
 	}

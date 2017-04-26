@@ -22,7 +22,7 @@ size_t		ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
@@ -35,7 +35,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+void		*ft_memset(void *b, int c, size_t len)
 {
 	char	*cpy;
 
@@ -48,30 +48,13 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_strdel(char **as)
 {
-	int		j;
-	char	*dest;
-	char	*source;
-
-	j = len;
-	dest = (char *)dst;
-	source = (char *)src;
-	if (source == dest)
-		return (dst);
-	else if (source > dest)
+	if (as)
 	{
-		while (len--)
-			*dest++ = *source++;
+		ft_memdel((void *)as);
+		as = NULL;
 	}
-	else
-	{
-		dest = dest + j - 1;
-		source = source + j - 1;
-		while (j--)
-			*dest-- = *source--;
-	}
-	return (dst);
 }
 
 char		*ft_strnstr(const char *big, const char *tiny, size_t len)

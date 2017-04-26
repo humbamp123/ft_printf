@@ -15,7 +15,6 @@
 int		ft_printf(const char *format, ...)
 {
 	va_list	args;
-	
 	char	*str;
 	int		i;
 

@@ -14,8 +14,8 @@
 
 int		ft_printf_x(t_print *ret, const char **fmt, va_list arg)
 {
-	// printf("_d_i\n");
-	ERW((ret->fin = ft_appendit(ret, ft_itoa_base(va_arg(arg, unsigned int), 16))) == 0, -1, "Appending Error");
+	ERR((ret->fin = ft_appender(ret->fin, 
+		ft_itoa_base(va_arg(arg, unsigned int), 16))) == 0, -1);
 	(*fmt)++;
 	return (1);
 }

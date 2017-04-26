@@ -16,16 +16,14 @@ int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
 {
 	char	*temp;
 	char	*temper;
-	// printf("_s_S\n");
-	// printf("%s\n", fmt);
-	
-	temp = (va_arg(arg, char *));
+
+	temp = va_arg(arg, char *);
 	if (temp)
 		ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
 	else
 	{
 		temper = ft_strdup("(null)\0");
-		ERW((ret->fin = ft_appendit(ret, temper)) == 0, -1, "Appending Error");
+		ERR((ret->fin = ft_appender(ret->fin, temper)) == 0, -1);
 	}
 	(*fmt)++;
 	return (1);

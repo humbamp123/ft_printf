@@ -52,10 +52,13 @@ int		main(void)
 	
 	i = 1;
 
+	ft_printf("ft_printf %6.5d\n", -11);
+	printf("printf %7.5d\n", -11);
+
 	// printf("%d\n",printf("%.d", i_int));
-	printf("\n");
-	printf("%0 5d", -3);
-	printf("\n");
+	// printf("\n");
+	// printf("%0 5d", -3);
+	// printf("\n");
 	// Precision trumps width
 	// IF PRECISION IS ZERO and ZERO is the value no character is written
 	// printf("append test\n");

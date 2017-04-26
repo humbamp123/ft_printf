@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libprintf.h"
+
 char		*ft_appendit(t_print *ret, char *str)
 {
 	char		*temp;
@@ -18,13 +19,13 @@ char		*ft_appendit(t_print *ret, char *str)
 	if (str && ret->save)
 	{
 		temp = ft_strjoin(ret->fin, str);
-		free(ret->fin);
+		ft_strdel(&ret->fin);
 		ret->fin = temp;
 	}
 	else if (str && !(ret->save))
 	{
 		ret->fin = ft_strdup(str);
-		free(str);
+		ft_strdel(&str);
 	}
 	return (ret->fin);
 }
@@ -36,13 +37,14 @@ char		*ft_appender(char *ret, char *str)
 	if (str && ret)
 	{
 		temp = ft_strjoin(ret, str);
-		free(ret);
+		ft_strdel(&ret);
+		ft_strdel(&str);
 		ret = temp;
 	}
 	else if (str && !(ret))
 	{
 		ret = ft_strdup(str);
-		free(str);
+		ft_strdel(&str);
 	}
 	return (ret);
 }
