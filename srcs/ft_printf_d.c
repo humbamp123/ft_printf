@@ -14,7 +14,13 @@
 
 static int	ft_d_flags(t_print *ret)
 {
-	(void)ret;
+
+	if (ret->flags.plus || ret->neg)
+		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :
+			ft_appender(ft_strdup("+\0"), ret->tmp);
+	else if (ret->flags.space)
+		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :
+			ft_appender(ft_strdup(" \0"), ret->tmp);
 	return (0);
 }
 
@@ -22,7 +28,6 @@ static int	ft_d_width(t_print *ret)
 {
 	int		spacelen;
 	char	*temp;
-	char	chr;
 
 	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus || 
 		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
@@ -36,7 +41,8 @@ static int	ft_d_width(t_print *ret)
 	else
 	{
 		ft_memset(temp, ' ', spacelen);
-		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) : ft_appender(temp, ret->tmp);
+		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
+		 ft_appender(temp, ret->tmp);
 	}
 	if ((ret->flags.plus || ret->neg) && !ret->flags.space)
 		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :

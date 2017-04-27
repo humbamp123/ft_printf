@@ -61,6 +61,14 @@ int		main(void)
 	// printf("printf %07.5d-\n", -11);
 
 	// // 
+
+	printf("printf   : % +7d|\n", -11);
+	ft_printf("ft_printf: % +7d|\n", -11);
+		ft_printf("\n");
+	printf("printf   : % +7d|\n", 11);
+	ft_printf("ft_printf: % +7d|\n", 11);
+		ft_printf("\n");
+
 	printf("printf   : % 07d|\n", 11);
 	ft_printf("ft_printf: % 07d|\n", 11);
 		ft_printf("\n");
