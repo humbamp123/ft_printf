@@ -48,7 +48,7 @@ typedef struct 		s_flags
 	char			pound;
 	char			zero;
 	char			flgs;
-	char			len_mod;
+	char			ln_mod;
 	int				width;
 	int				pres;
 	char			in_pres;
