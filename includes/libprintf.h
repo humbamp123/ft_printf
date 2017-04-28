@@ -42,15 +42,16 @@
 
 typedef struct 		s_flags
 {
-	short			minus;
-	short			space;
-	short			plus;
-	short			pound;
-	short			zero;
-	short			flgs;
+	char			minus;
+	char			space;
+	char			plus;
+	char			pound;
+	char			zero;
+	char			flgs;
+	char			len_mod;
 	int				width;
 	int				pres;
-	int				in_pres;
+	char			in_pres;
 }					t_flags;
 
 typedef struct		s_print 
@@ -103,6 +104,9 @@ int					ft_printf_flags(t_print *ret, const char **fmt, va_list arg);
 int					ft_width(t_print *ret, const char **fmt, va_list arg);
 int					ft_precision(t_print *ret, const char **fmt, va_list arg);
 int					ft_skip(const char **fmt);
+int					ft_len_mod(t_print *ret, const char **fmt, va_list arg);
+int					ft_new_len(t_print *ret, va_list arg);
+
 
 
 char				*ft_appendit(t_print *ret, char *str);
