@@ -61,7 +61,7 @@ int				ft_atoi(const char *str)
 	i = ft_morecheck(str, i);
 	while ((str[i]) != '\0')
 	{
-		if ((str[i - 1]) == '-')
+		if (i && (str[i - 1]) == '-')
 			j = -1;
 		if (ft_isdigit(str[i]))
 			a = a * 10 + str[i++] - '0';

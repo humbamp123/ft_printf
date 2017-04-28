@@ -62,6 +62,10 @@ int		main(void)
 
 	// // 
 
+	printf("printf   : %-5d|\n", -42);
+	ft_printf("ft_printf: %-5d|\n", -42);
+		ft_printf("\n");
+
 	printf("printf   : %.10d|\n", -123);
 	ft_printf("ft_printf: %.10d|\n", -123);
 		ft_printf("\n");
