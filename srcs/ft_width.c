@@ -12,7 +12,14 @@
 
 #include "libprintf.h"
 
-int		ft_width(t_print *ret, const char **fmt, va_list arg)
+int			ft_skip(const char **fmt)
+{
+	while (**fmt != '%' || *((*fmt) + 1) != 0)
+		(*fmt)++;
+	return (1);
+}
+
+int			ft_width(t_print *ret, const char **fmt, va_list arg)
 {
 	if (**fmt == '*')
 	{
@@ -21,6 +28,7 @@ int		ft_width(t_print *ret, const char **fmt, va_list arg)
 		{
 			ret->flags.flgs = 1;
 			ret->flags.minus = 1;
+			ret->flags.width = -ret->flags.width;
 		}
 		(*fmt)++;
 	}
@@ -32,12 +40,12 @@ int		ft_width(t_print *ret, const char **fmt, va_list arg)
 	return (0);
 }
 
-int		ft_precision(t_print *ret, const char **fmt, va_list arg)
+int			ft_precision(t_print *ret, const char **fmt, va_list arg)
 {
 	if (**fmt == '.' && *((*fmt) + 1) == '*')
 	{
 		ret->flags.pres = va_arg(arg, int);
-		fmt += 2;
+		(*fmt) += 2;
 	}
 	else if (**fmt == '.' && ft_isdigit(*((*fmt) + 1)))
 	{
@@ -45,10 +53,8 @@ int		ft_precision(t_print *ret, const char **fmt, va_list arg)
 		ret->flags.pres = ft_atoi(*fmt);
 		(*fmt) += ft_nbrlen(ret->flags.pres);
 	}
-	else if (**fmt == '.')
-	{
+	else
 		(*fmt)++;
-	}
 	ret->flags.in_pres = 1;
 	return (0);
 }

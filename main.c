@@ -62,11 +62,41 @@ int		main(void)
 
 	// // 
 
+	printf("printf   : %.10d|\n", -123);
+	ft_printf("ft_printf: %.10d|\n", -123);
+		ft_printf("\n");
+
+	printf("printf   : %.3d|\n", -123);
+	ft_printf("ft_printf: %.3d|\n", -123);
+		ft_printf("\n");
+
+	printf("printf   : %.*d|\n", 3, 0);
+	ft_printf("ft_printf: %.*d|\n", 3, 0);
+		ft_printf("\n");
+
+	printf("printf   : %.*d|\n", 10, 0);
+	ft_printf("ft_printf: %.*d|\n", 10, 0);
+		ft_printf("\n");
+
+	printf("printf   : %.*d|\n", -15, 0);
+	ft_printf("ft_printf: %.*d|\n", -15, 0);
+		ft_printf("\n");
+
+	printf("printf   : %d|\n", -11);
+	ft_printf("ft_printf: %d|\n", -11);
+		ft_printf("\n");
+
 	printf("printf   : % +7d|\n", -11);
 	ft_printf("ft_printf: % +7d|\n", -11);
 		ft_printf("\n");
 	printf("printf   : % +7d|\n", 11);
 	ft_printf("ft_printf: % +7d|\n", 11);
+		ft_printf("\n");
+	printf("printf   : %0+7d|\n", -11);
+	ft_printf("ft_printf: %0+7d|\n", -11);
+		ft_printf("\n");
+	printf("printf   : %0+7d|\n", 11);
+	ft_printf("ft_printf: %0+7d|\n", 11);
 		ft_printf("\n");
 
 	printf("printf   : % 07d|\n", 11);

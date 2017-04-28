@@ -102,6 +102,7 @@ int					ft_printf_x(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_flags(t_print *ret, const char **fmt, va_list arg);
 int					ft_width(t_print *ret, const char **fmt, va_list arg);
 int					ft_precision(t_print *ret, const char **fmt, va_list arg);
+int					ft_skip(const char **fmt);
 
 
 char				*ft_appendit(t_print *ret, char *str);
