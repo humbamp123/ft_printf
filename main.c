@@ -33,12 +33,14 @@ int		main(void)
 	double	d_double;
 	long double	ld_ldouble;
 	uint8_t	temp;
+	intmax_t test;
+	uintmax_t tester;
 
 	i_int = +3;
 	i_uint = 2147483650;
 	i_long = 2147483650;
 	i_ll = 0;
-	i_ull = 1446744073709551615;
+	i_ull = -546744073709551615;
 	c = 65;
 	// c_str = "test\0";
 	c_ret = NULL;
@@ -51,7 +53,8 @@ int		main(void)
 	ld_ldouble = 2.123456789012345678901;
 	
 	i = 1;
-
+	// test = iull;
+	// printf("%llu\n", i_ull);
 	// ft_printf("ft_printf %06.5d\n", -11);
 
 	// Zeros
