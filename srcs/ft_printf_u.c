@@ -68,12 +68,11 @@ int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->flags.ln_mod = **fmt == 'U' ? 3 : 0; 
 	ret->var = ret->flags.ln_mod ? ft_new_len(ret, arg) : va_arg(arg, int);
+	printf("%llu\n", ret->var);
 	ret->uvar = ret->var < 0 ? (unsigned)ret->var + UINT_MAX + 1 : (unsigned)ret->var;
 	ERR1(ret->flags.in_pres && (long long)ret->uvar == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-	printf("%zu\n", ret->uvar);
 	ret->tmp = ft_itoa(ret->uvar);
-	printf("%s\n", ret->tmp);
 	if (ret->flags.in_pres == 1)
 		ft_u_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)
