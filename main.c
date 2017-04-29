@@ -40,7 +40,7 @@ int		main(void)
 	i_uint = 2147483650;
 	i_long = 2147483650;
 	i_ll = 0;
-	i_ull = -546744073709551615;
+	i_ull = 18446744073709551491;
 	c = 65;
 	// c_str = "test\0";
 	c_ret = NULL;
@@ -54,8 +54,8 @@ int		main(void)
 	
 	i = 1;
 
-	printf("%u|\n", 0);
-	ft_printf("%u|\n", 0);
+	printf("%llu|\n", i_ull);
+	ft_printf("%llu|\n", i_ull);
 
 	// ft_printf("%.*s|", 10, c_str);
 	// printf("% #X", -10);

@@ -48,8 +48,6 @@ static int	ft_s_precision(t_print *ret)
 
 int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
 {
-	char	*temper;
-
 	ret->tmp = va_arg(arg, char *);
 	ret->tmp = ret->tmp ? ft_strdup(ret->tmp) : NULL;
 	if (ret->tmp)
