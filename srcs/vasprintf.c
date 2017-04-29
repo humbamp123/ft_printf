@@ -12,7 +12,7 @@
 
 #include "libprintf.h"
 
-#define COUNT 25
+#define COUNT 36
 #define SIZE 3
 
 static	char	g_ary[COUNT][SIZE] = {
@@ -20,9 +20,11 @@ static	char	g_ary[COUNT][SIZE] = {
 	{"0"}, {"*"}, {"1"}, {"2"},
 	{"3"}, {"4"}, {"5"}, {"6"},
 	{"7"}, {"8"}, {"9"}, {"."},
-	{"s"}, {"d"}, {"i"}, {"u"},
-	{"o"}, {"x"}, {"c"}, {"p"},
-	{"%"}};
+	{"j"}, {"z"}, {"l"}, {"ll"},
+	{"h"}, {"hh"}, {"s"}, {"d"},
+	{"i"}, {"u"}, {"o"}, {"x"},
+	{"X"}, {"D"}, {"O"}, {"c"}, 
+	{"C"}, {"S"}, {"p"}, {"%"}};
 
 static	int		(*g_ft_ptr[COUNT]) (t_print *ret, const char **fmt,
 	va_list arg) = {
@@ -30,9 +32,11 @@ static	int		(*g_ft_ptr[COUNT]) (t_print *ret, const char **fmt,
 	ft_printf_flags, ft_width, ft_width, ft_width,
 	ft_width, ft_width, ft_width, ft_width,
 	ft_width, ft_width, ft_width, ft_precision,
-	ft_printf_s, ft_printf_d, ft_printf_d, ft_printf_u,
-	ft_printf_o, ft_printf_x, ft_printf_c, ft_printf_p,
-	ft_printf_p};
+	ft_len_mod, ft_len_mod, ft_len_mod, ft_len_mod,
+	ft_len_mod, ft_len_mod, ft_printf_s, ft_printf_d,
+	ft_printf_d, ft_printf_u, ft_printf_o, ft_printf_x, 
+	ft_printf_x, ft_printf_d, ft_printf_o, ft_printf_c,
+	ft_printf_c, ft_printf_s, ft_printf_p, ft_printf_p};
 
 static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 {

@@ -81,6 +81,7 @@ static int	ft_u_precision(t_print *ret)
 
 int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 {
+	ret->flags.ln_mod = **fmt == 'U' ? 3 : 0; 
 	ret->var = ret->flags.ln_mod ? ft_new_len(ret, arg) : va_arg(arg, int);
 	ret->uvar = ret->var < 0 ? (unsigned)ret->var + UINT_MAX + 1 : (unsigned)ret->var;
 	ERR1(ret->flags.in_pres && (long long)ret->uvar == 0 && ret->flags.pres
