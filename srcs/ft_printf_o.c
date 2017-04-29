@@ -73,7 +73,6 @@ int			ft_printf_o(t_print *ret, const char **fmt, va_list arg)
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;
-	printf("===%d===\n", ret->neg);
 	ret->tmp = ret->neg ? ft_itoa_base(-ret->var, 8):
 		ft_itoa_base(ret->var, 8);
 	if (ret->flags.in_pres == 1)

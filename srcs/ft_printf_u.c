@@ -71,7 +71,7 @@ int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 	ret->uvar = ret->var < 0 ? (unsigned)ret->var + UINT_MAX + 1 : (unsigned)ret->var;
 	ERR1(ret->flags.in_pres && (long long)ret->uvar == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-	ret->tmp = ret->neg ? ft_itoa(-ret->uvar) : ft_itoa(ret->uvar);
+	ret->tmp = ft_itoa(ret->uvar);
 	if (ret->flags.in_pres == 1)
 		ft_u_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)
