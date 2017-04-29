@@ -12,20 +12,19 @@
 
 #include "libprintf.h"
 
-static int	ft_s_flags(t_print *ret)
-{
-	return (0);
-	(void)ret;
-}
+// static int	ft_s_flags(t_print *ret)
+// {
+// 	return (0);
+// 	(void)ret;
+// }
 
 static int	ft_s_width(t_print *ret)
 {
 	int		spacelen;
 	char	*temp;
 
-	spacelen = !ret->flags.in_pres ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
-		ret->flags.width - (int)ft_strlen(ret->tmp);
-	ERR1(spacelen <= 0, ft_s_flags(ret), 0);
+	spacelen = ret->flags.width - (int)ft_strlen(ret->tmp);
+	// ERR1(spacelen <= 0, ft_s_flags(ret), 0);
 	temp = ft_strnew(spacelen + 1);
 	if (!ret->flags.in_pres && !ret->flags.minus && ret->flags.zero)
 	{
@@ -43,20 +42,29 @@ static int	ft_s_width(t_print *ret)
 	return (0);
 }
 
+// HAVE WIDTH LEF ADJUST IF NO
+
+	// if (ret->flags.in_pres > 0 && (int)ft_strlen(ret->tmp) <= ret->flags.pres)
+	// {
+	// 	zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp);
+	// 	ERR1(zerolen <= 0, , 0);
+	// 	temp = ft_strnew(zerolen + 1);
+	// 	ft_memset(temp, '0', zerolen);
+	// 	ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
+	// 		ft_appender(temp, ret->tmp);
+	// 	ret->flags.pres = ft_strlen(ret->tmp);
+	// }
+	// else 
+
 static int	ft_s_precision(t_print *ret)
 {
 	char	*temp;
-	int		zerolen;
 
-	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) <= ret->flags.pres)
+	if ((int)ft_strlen(ret->tmp) > ret->flags.pres && ret->flags.pres > 0)
 	{
-		zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp);
-		ERR1(zerolen <= 0, ft_s_flags(ret), 0);
-		temp = ft_strnew(zerolen + 1);
-		ft_memset(temp, '0', zerolen);
-		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
-			ft_appender(temp, ret->tmp);
-		ret->flags.pres = ft_strlen(ret->tmp);
+		temp = ft_strsub(ret->tmp, 0, ret->flags.pres);
+		ft_strdel(&ret->tmp);
+		ret->tmp = temp;
 	}
 	else if (ret->flags.pres != 0)
 		ft_s_flags(ret);
@@ -65,25 +73,28 @@ static int	ft_s_precision(t_print *ret)
 
 int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
 {
-	char	*temp;
 	char	*temper;
 
-	temp = va_arg(arg, char *);
-	if (temp)
+	ret->tmp = va_arg(arg, char *);
+	ret->tmp = ret->tmp ? ft_strdup(ret->tmp) : NULL;
+	if (ret->tmp)
 	{
 		if (ret->flags.in_pres == 1)
+		{
+			ERR2(ret->flags.pres == 0, ft_strdel(&ret->tmp), (*fmt)++, 1);
 			ft_s_precision(ret);
-		if (ret->flags.width && ret->flags.width > ret->flags.pres)
+		}
+		if (ret->flags.width && ret->flags.width > (int)ft_strlen(ret->tmp))
 			ft_s_width(ret);
 		if (ret->flags.flgs && ret->flags.pres == 0 &&
 				ret->flags.width == 0)
 			ft_s_flags(ret);
-		ERW((ret->fin = ft_appendit(ret, temp)) == 0, -1, "Appending Error");
+		ERW((ret->fin = ft_appendit(ret, ret->tmp)) == 0, -1, "Appending Error");
 	}
 	else
 	{
-		temper = ft_strdup("(null)\0");
-		ERR((ret->fin = ft_appender(ret->fin, temper)) == 0, -1);
+		ret->tmp = ft_strdup("(null)\0");
+		ERR((ret->fin = ft_appender(ret->fin, ret->tmp)) == 0, -1);
 	}
 	(*fmt)++;
 	return (1);
