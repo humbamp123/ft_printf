@@ -21,7 +21,7 @@ int			ft_new_len(t_print *ret, va_list arg)
 	ret->var = ret->flags.ln_mod == 4 ? va_arg(arg, long long) : ret->var;
 	ret->var = ret->flags.ln_mod == 5 ? (short)va_arg(arg, int) : ret->var;
 	ret->var = ret->flags.ln_mod == 6 ? (char)va_arg(arg, int) : ret->var;
-	return (1);
+	return (0);
 }
 
 int			ft_len_mod(t_print *ret, const char **fmt, va_list arg)
