@@ -53,19 +53,9 @@ static int	ft_x_precision(t_print *ret)
 	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) <= ret->flags.pres)
 	{
 		zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp);
-		ERR1(zerolen <= 0, ft_x_flags(ret), 0);
 		temp = ft_strnew(zerolen + 1);
 		ft_memset(temp, '0', zerolen);
-		if (ret->flags.zero && !ret->neg)
-			ret->tmp = ft_appender(temp, ret->tmp);
-		else 
-		{
-			if (ret->flags.plus)
-				temp = ft_appender(ft_strdup("+\0"), temp);
-			else if (ret->flags.space)
-				temp = ft_appender(ft_strdup(" \0"), temp);
-			ret->tmp = ft_appender(temp, ret->tmp);
-		}
+		ret->tmp = ft_appender(temp, ret->tmp);
 		ret->flags.pres = ft_strlen(ret->tmp);
 	}
 	else if (ret->flags.pres != 0)
@@ -77,10 +67,9 @@ int			ft_printf_x(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->var = ret->flags.ln_mod ? ft_new_len(ret, arg) : va_arg(arg, int);
 	ret->flags.cap = **fmt == 'X' ? 1 : 0;
-	ERR1(ret->flags.in_pres && (long long)ret->uvar == 0 && ret->flags.pres
+	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-	ret->tmp = ret->neg ? ft_itoa_base(-ret->uvar, 16) :
-		ft_itoa_base(ret->uvar, 16);
+	ret->tmp = ft_itoa_base(ret->var, 16);
 	if (ret->flags.in_pres == 1)
 		ft_x_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)
