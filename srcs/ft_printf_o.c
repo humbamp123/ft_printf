@@ -14,13 +14,8 @@
 
 static int	ft_o_flags(t_print *ret)
 {
-
-	if (ret->flags.plus || ret->neg)
-		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :
-			ft_appender(ft_strdup("+\0"), ret->tmp);
-	else if (ret->flags.space)
-		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :
-			ft_appender(ft_strdup(" \0"), ret->tmp);
+	ret->tmp = ret->flags.pound ? ft_appender(ft_strdup("0\0"), ret->tmp) :
+			ret->tmp;
 	return (0);
 }
 
@@ -63,15 +58,6 @@ static int	ft_o_precision(t_print *ret)
 		ft_memset(temp, '0', zerolen);
 		if (ret->flags.zero && !ret->neg)
 			ret->tmp = ft_appender(temp, ret->tmp);
-		else 
-		{
-			if (ret->flags.plus || ret->neg)
-				temp = ret->neg ? ft_appender(ft_strdup("-\0"), temp) :
-					ft_appender(ft_strdup("+\0"), temp);
-			else if (ret->flags.space)
-				temp = ft_appender(ft_strdup(" \0"), temp);
-			ret->tmp = ft_appender(temp, ret->tmp);
-		}
 		ret->flags.pres = ft_strlen(ret->tmp);
 	}
 	else if (ret->flags.pres != 0)

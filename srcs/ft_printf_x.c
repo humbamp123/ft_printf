@@ -14,13 +14,8 @@
 
 static int	ft_x_flags(t_print *ret)
 {
-
-	if (ret->flags.plus || ret->neg)
-		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :
-			ft_appender(ft_strdup("+\0"), ret->tmp);
-	else if (ret->flags.space)
-		ret->tmp = ret->neg ? ft_appender(ft_strdup("-\0"), ret->tmp) :
-			ft_appender(ft_strdup(" \0"), ret->tmp);
+	ret->tmp = ret->flags.pound ? ft_appender(ft_strdup("0x\0"), ret->tmp) :
+			ret->tmp;
 	return (0);
 }
 
