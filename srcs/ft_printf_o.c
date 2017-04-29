@@ -14,8 +14,8 @@
 
 static int	ft_o_flags(t_print *ret)
 {
-	ret->tmp = ret->flags.pound ? ft_appender(ft_strdup("0\0"), ret->tmp) :
-			ret->tmp;
+	ret->tmp = ret->flags.pound && ret->var != 0 ? ft_appender(ft_strdup("0\0"),
+		ret->tmp) : ret->tmp;
 	return (0);
 }
 
