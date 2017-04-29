@@ -69,7 +69,9 @@ int			ft_printf_x(t_print *ret, const char **fmt, va_list arg)
 	ret->flags.cap = **fmt == 'X' ? 1 : 0;
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-	ret->tmp = ft_itoa_base(ret->var, 16);
+	ret->neg = (long long)ret->var < 0 ? 1 : 0;
+	ret->tmp = ret->neg ? ft_itoa_base(-ret->var, 16):
+		ft_itoa_base(ret->var, 16);
 	if (ret->flags.in_pres == 1)
 		ft_x_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)

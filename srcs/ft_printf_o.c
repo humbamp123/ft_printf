@@ -67,11 +67,14 @@ static int	ft_o_precision(t_print *ret)
 
 int			ft_printf_o(t_print *ret, const char **fmt, va_list arg)
 {
+	printf("test\n");
 	ret->var = ret->flags.ln_mod ? ft_new_len(ret, arg) : va_arg(arg, int);
 	ret->flags.cap = **fmt == 'O' ? 1 : 0;
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-	ret->tmp = ft_itoa_base(ret->var, 8);
+	ret->neg = (long long)ret->var < 0 ? 1 : 0;
+	printf("===%d===\n", ret->neg);
+	ret->tmp = ret->neg ? ft_itoa_base(-ret->var, 8):
 		ft_itoa_base(ret->var, 8);
 	if (ret->flags.in_pres == 1)
 		ft_o_precision(ret);
