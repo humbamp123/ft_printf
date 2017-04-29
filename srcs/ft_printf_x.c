@@ -14,8 +14,8 @@
 
 static int	ft_x_flags(t_print *ret)
 {
-	ret->tmp = ret->flags.pound ? ft_appender(ft_strdup("0x\0"), ret->tmp) :
-			ret->tmp;
+	ret->tmp = ret->flags.pound && (int)ret->var != 0 ?
+		ft_appender(ft_strdup("0x\0"), ret->tmp) : ret->tmp;
 	return (0);
 }
 
@@ -77,7 +77,7 @@ int			ft_printf_x(t_print *ret, const char **fmt, va_list arg)
 	if ((ret->flags.flgs || ret->neg) && ret->flags.pres == 0 &&
 			ret->flags.width == 0)
 		ft_x_flags(ret);
-	ret->fin = ret->flags.cap ? ft_appender(ret->fin, ft_to_upper(&ret->tmp)) : 
+	ret->fin = ret->flags.cap ? ft_appender(ret->fin, ft_to_upper(ret->tmp)) : 
 		ft_appender(ret->fin, ret->tmp);
 	(*fmt)++;
 	return (1);

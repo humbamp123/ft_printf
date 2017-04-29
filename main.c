@@ -54,8 +54,8 @@ int		main(void)
 	
 	i = 1;
 
-	printf("%.*x|\n", 0, 0);
-	ft_printf("%.*x|\n", 0, 0);
+	printf("%#X|\n", 0);
+	ft_printf("%#X|\n", 0);
 
 	// ft_printf("%.*s|", 10, c_str);
 	// printf("% #X", -10);

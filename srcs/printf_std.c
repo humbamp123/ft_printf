@@ -54,12 +54,15 @@ static int	ft_upper(int c)
 	return (c >= 'a' && c <= 'z' ? c - 32 : c);
 }
 
-char		*ft_to_upper(char **str)
+char		*ft_to_upper(char *str)
 {
-	while(**str != 0)
+	int		i;
+
+	i = 0;
+	while(str[i] != 0)
 	{
-		**str = ft_upper(**str);
-		(*str)++;
+		str[i] = ft_upper(str[i]);
+		i++;
 	}
-	return (0);
+	return (str);
 }
