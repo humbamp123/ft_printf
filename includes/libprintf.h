@@ -52,6 +52,7 @@ typedef struct 		s_flags
 	int				width;
 	int				pres;
 	char			in_pres;
+	int				cap;
 }					t_flags;
 
 typedef struct		s_print 
@@ -112,6 +113,8 @@ int					ft_new_len(t_print *ret, va_list arg);
 
 char				*ft_appendit(t_print *ret, char *str);
 char				*ft_appender(char *ret, char *str);
+char				*ft_to_upper(char **str);
+
 
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 

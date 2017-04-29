@@ -48,3 +48,18 @@ char		*ft_appender(char *ret, char *str)
 	}
 	return (ret);
 }
+
+static int	ft_upper(int c)
+{
+	return (c >= 'a' && c <= 'z' ? c - 32 : c);
+}
+
+char		*ft_to_upper(char **str)
+{
+	while(**str != 0)
+	{
+		**str = ft_upper(**str);
+		(*str)++;
+	}
+	return (0);
+}

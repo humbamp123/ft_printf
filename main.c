@@ -53,7 +53,7 @@ int		main(void)
 	ld_ldouble = 2.123456789012345678901;
 	
 	i = 1;
-	ft_printf("%p", 0);
+	printf("%#x", 10);
 	// test = iull;
 	// printf("%llu\n", i_ull);
 	// ft_printf("ft_printf %06.5d\n", -11);

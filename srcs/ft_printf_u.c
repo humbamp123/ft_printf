@@ -65,9 +65,8 @@ static int	ft_u_precision(t_print *ret)
 			ret->tmp = ft_appender(temp, ret->tmp);
 		else 
 		{
-			if (ret->flags.plus || ret->neg)
-				temp = ret->neg ? ft_appender(ft_strdup("-\0"), temp) :
-					ft_appender(ft_strdup("+\0"), temp);
+			if (ret->flags.plus)
+				temp = ft_appender(ft_strdup("+\0"), temp);
 			else if (ret->flags.space)
 				temp = ft_appender(ft_strdup(" \0"), temp);
 			ret->tmp = ft_appender(temp, ret->tmp);
