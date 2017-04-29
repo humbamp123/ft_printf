@@ -25,18 +25,18 @@ static int	ft_s_width(t_print *ret)
 
 	spacelen = !ret->flags.in_pres ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
 		ret->flags.width - (int)ft_strlen(ret->tmp);
-	ERR1(spacelen <= 0, ft_u_flags(ret), 0);
+	ERR1(spacelen <= 0, ft_s_flags(ret), 0);
 	temp = ft_strnew(spacelen + 1);
 	if (!ret->flags.in_pres && !ret->flags.minus && ret->flags.zero)
 	{
 		ft_memset(temp, '0', spacelen);
 		ret->tmp = ft_appender(temp, ret->tmp);
-		ft_u_flags(ret);
+		ft_s_flags(ret);
 	}
 	else
 	{
 		ft_memset(temp, ' ', spacelen);
-		ft_u_flags(ret);
+		ft_s_flags(ret);
 		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
 			ft_appender(temp, ret->tmp);
 	}
@@ -59,7 +59,7 @@ static int	ft_s_precision(t_print *ret)
 		ret->flags.pres = ft_strlen(ret->tmp);
 	}
 	else if (ret->flags.pres != 0)
-		ft_u_flags(ret);
+		ft_s_flags(ret);
 	return (0);
 }
 
