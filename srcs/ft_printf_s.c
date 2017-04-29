@@ -12,12 +12,6 @@
 
 #include "libprintf.h"
 
-// static int	ft_s_flags(t_print *ret)
-// {
-// 	return (0);
-// 	(void)ret;
-// }
-
 static int	ft_s_width(t_print *ret)
 {
 	int		spacelen;
@@ -30,12 +24,10 @@ static int	ft_s_width(t_print *ret)
 	{
 		ft_memset(temp, '0', spacelen);
 		ret->tmp = ft_appender(temp, ret->tmp);
-		ft_s_flags(ret);
 	}
 	else
 	{
 		ft_memset(temp, ' ', spacelen);
-		ft_s_flags(ret);
 		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
 			ft_appender(temp, ret->tmp);
 	}
@@ -66,8 +58,6 @@ static int	ft_s_precision(t_print *ret)
 		ft_strdel(&ret->tmp);
 		ret->tmp = temp;
 	}
-	else if (ret->flags.pres != 0)
-		ft_s_flags(ret);
 	return (0);
 }
 
@@ -86,9 +76,9 @@ int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
 		}
 		if (ret->flags.width && ret->flags.width > (int)ft_strlen(ret->tmp))
 			ft_s_width(ret);
-		if (ret->flags.flgs && ret->flags.pres == 0 &&
-				ret->flags.width == 0)
-			ft_s_flags(ret);
+		// if (ret->flags.flgs && ret->flags.pres == 0 &&
+		// 		ret->flags.width == 0)
+		// 	ft_s_flags(ret);
 		ERW((ret->fin = ft_appendit(ret, ret->tmp)) == 0, -1, "Appending Error");
 	}
 	else
