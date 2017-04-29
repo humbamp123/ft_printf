@@ -57,14 +57,6 @@ static int	ft_u_precision(t_print *ret)
 		ft_memset(temp, '0', zerolen);
 		if (ret->flags.zero && !ret->neg)
 			ret->tmp = ft_appender(temp, ret->tmp);
-		else 
-		{
-			if (ret->flags.plus)
-				temp = ft_appender(ft_strdup("+\0"), temp);
-			else if (ret->flags.space)
-				temp = ft_appender(ft_strdup(" \0"), temp);
-			ret->tmp = ft_appender(temp, ret->tmp);
-		}
 		ret->flags.pres = ft_strlen(ret->tmp);
 	}
 	else if (ret->flags.pres != 0)
