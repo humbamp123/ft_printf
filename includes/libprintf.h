@@ -13,6 +13,15 @@
 #ifndef LIBPRINTF_H
 # define LIBPRINTF_H
 
+# include <stdarg.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <stdio.h>
+# include <stdint.h>
+# define hex "0123456789abcdef"
+
 # ifndef ERRS
 #  define ERR(a, b) do{if(a){return(b);}}while(0)
 #  define ERR1(a, b, c) do{if(a){b;return(c);}}while(0)
@@ -30,15 +39,6 @@
 #  define ERW4(a,b,c,d,e,f,g) do{if(a){b;c;d;e;pl(g);return(f);}}while(0)
 #  define ERW5(a,b,c,d,e,f,g,h) do{if(a){b;c;d;e;f;pl(h);return(g);}}while(0)
 # endif
-
-# include <stdarg.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdio.h>
-# include <stdint.h>
-# define hex "0123456789abcdef"
 
 typedef struct 		s_flags
 {

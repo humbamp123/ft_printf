@@ -53,8 +53,20 @@ int		main(void)
 	
 	i = 1;
 
-	printf("%u|\n", -42);
-	ft_printf("%u|\n", -42);
+	printf("printf   : %hu hu|\n", -131);
+	ft_printf("ft_printf %hu hu|\n\n", -131);
+
+	printf("printf   : %u u|\n", -4294967171);
+	ft_printf("ft_printf %u u|\n\n", -4294967171);
+
+	printf("printf   : %lu lu|\n", i_ull);
+	ft_printf("ft_printf %lu lu\n\n", i_ull);
+
+	printf("printf   : %lu lu|\n", -146744073709551491);
+	ft_printf("ft_printf %lu lu|\n\n", -146744073709551491);
+
+	printf("printf   : %u u|\n", -42);
+	ft_printf("ft_printf %u u|\n\n", -42);
 
 	// ft_printf("%.*s|", 10, c_str);
 	// printf("% #X", -10);
