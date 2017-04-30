@@ -82,14 +82,14 @@ static int	ft_d_precision(t_print *ret)
 int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->flags.ln_mod = **fmt == 'D' ? 3 : ret->flags.ln_mod; 
-	if (ret->flags.ln_mod)
-		ft_new_len(ret, arg);
-	else
-		ret->var = va_arg(arg, int);
+	ft_new_len(ret, arg);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;
-	ret->tmp = ret->neg ? ft_itoa(-ret->var) : ft_itoa(ret->var);
+	if (ret->var == LONG_MIN)
+		ret->tmp = strdup("9223372036854775808\0");
+	else
+		ret->tmp = ret->neg ? ft_itoa(-ret->var) : ft_itoa(ret->var);
 	if (ret->flags.in_pres == 1)
 		ft_d_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)

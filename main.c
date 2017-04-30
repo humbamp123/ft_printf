@@ -38,7 +38,7 @@ int		main(void)
 
 	i_int = +3;
 	i_uint = 2147483650;
-	i_long = 2147483650;
+	i_long = -2147483650;
 	i_ll = 0;
 	c = 65;
 	// c_str = "test\0";
@@ -52,21 +52,33 @@ int		main(void)
 	ld_ldouble = 2.123456789012345678901;
 	
 	i = 1;
+	printf("{%3*d}\n", 0, 0);
+	ft_printf("{%3*d}\n", 0, 0);
 
-	printf("printf   : %hu hu|\n", -131);
-	ft_printf("ft_printf %hu hu|\n\n", -131);
+	// printf("printf   : %+c +c|\n", 0);
+	// ft_printf("ft_printf: %+c +c|\n\n", 0);
 
-	printf("printf   : %u u|\n", -4294967171);
-	ft_printf("ft_printf %u u|\n\n", -4294967171);
+
+	printf("printf   : %+c +c|\n", 0);
+	ft_printf("ft_printf: %+c +c|\n\n", 0);
+
+	printf("printf   : %lld O|\n", LONG_MAX);
+	ft_printf("ft_printf: %lld O|\n\n", LONG_MAX);
+
+	// printf("printf   : %D D|\n", LONG_MIN);
+	// ft_printf("ft_printf: %ld D|\n\n", LONG_MIN);
+
+	printf("printf   : %5.5lu lu|\n", i_long);
+	ft_printf("ft_printf: %5.5lu lu|\n\n", i_long);
 
 	printf("printf   : %lu lu|\n", i_ull);
-	ft_printf("ft_printf %lu lu\n\n", i_ull);
+	ft_printf("ft_printf: %lu lu\n\n", i_ull);
 
-	printf("printf   : %lu lu|\n", -146744073709551491);
-	ft_printf("ft_printf %lu lu|\n\n", -146744073709551491);
+	printf("printf   : %U U|\n", -146744073709551491);
+	ft_printf("ft_printf: %U U|\n\n", -146744073709551491);
 
-	printf("printf   : %u u|\n", -42);
-	ft_printf("ft_printf %u u|\n\n", -42);
+	printf("printf   : %U U|\n", -42);
+	ft_printf("ft_printf: %U U|\n\n", -42);
 
 	// ft_printf("%.*s|", 10, c_str);
 	// printf("% #X", -10);

@@ -56,6 +56,7 @@ static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 		i++;
 	}
 	ERR(**fmt == 0, 0);
+	// *g_ft_ptr[32];
 	return (0);
 }
 

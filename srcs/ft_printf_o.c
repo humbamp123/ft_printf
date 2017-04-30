@@ -67,8 +67,8 @@ static int	ft_o_precision(t_print *ret)
 
 int			ft_printf_o(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->var = ret->flags.ln_mod ? ft_new_len(ret, arg) : va_arg(arg, int);
-	ret->flags.cap = **fmt == 'O' ? 1 : 0;
+	ret->flags.cap = **fmt == 'O' ? 3 : 0;
+	ft_new_len(ret, arg);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;
