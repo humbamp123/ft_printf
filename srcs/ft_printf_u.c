@@ -15,12 +15,12 @@
 static int ft_u_negitoa(t_print *ret)
 {
 	ret->tmp = NULL;
-	ERR((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base((unsigned)ret->var + UINT_MAX + 1, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base((unsigned)ret->var + SIZE_MAX + 1, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 3 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 4 ? ft_itoa_base((unsigned)ret->var + ULLONG_MAX, 10) : ret->tmp) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 5 ? ft_itoa_base((unsigned)ret->var + USHRT_MAX + 1, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 6 ? ft_itoa_base((unsigned)ret->var + UCHAR_MAX + 1, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 6 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
 
 	// ERW((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base((unsigned)ret->var + UINT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
 	// ERW((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base((unsigned)ret->var + SIZE_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
