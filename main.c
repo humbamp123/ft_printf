@@ -53,8 +53,8 @@ int		main(void)
 	
 	i = 1;
 
-	printf("%llu|\n", i_ull);
-	ft_printf("%llu|\n", i_ull);
+	printf("%u|\n", -42);
+	ft_printf("%u|\n", -42);
 
 	// ft_printf("%.*s|", 10, c_str);
 	// printf("% #X", -10);
