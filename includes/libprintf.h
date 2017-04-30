@@ -63,7 +63,6 @@ char				*tmp;
 char				*text;
 char				*varchar;
 intmax_t			var;
-uintmax_t			uvar;
 short				neg;
 t_flags				flags;
 }					t_print;

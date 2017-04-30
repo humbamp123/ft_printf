@@ -64,15 +64,17 @@ static int	ft_u_precision(t_print *ret)
 	return (0);
 }
 
+// (unsigned long long)ret->var + ULLONG_MAX + 1
 int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->flags.ln_mod = **fmt == 'U' ? 3 : 0; 
-	ret->var = ret->flags.ln_mod ? ft_new_len(ret, arg) : va_arg(arg, int);
-	printf("%u\n", ret->var);
-	ret->uvar = ret->var < 0 ? (unsigned long long)ret->var + UINT_MAX + 1 : (unsigned long long)ret->var;
-	ERR1(ret->flags.in_pres && (long long)ret->uvar == 0 && ret->flags.pres
+	ret->flags.ln_mod = **fmt == 'U' ? 3 : ret->flags.ln_mod;
+	if (ret->flags.ln_mod)
+		ft_new_len(ret, arg);
+	else
+		ret->var = va_arg(arg, int);
+	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-	ret->tmp = ft_itoa(ret->uvar);
+	ret->tmp = ft_itoa_base(ret->var, 10);
 	if (ret->flags.in_pres == 1)
 		ft_u_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)

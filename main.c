@@ -21,7 +21,7 @@ int		main(void)
 	long long	i;
 	unsigned int	i_uint;
 	// unsigned long	i_ulong;
-	unsigned long long	i_ull;
+	unsigned long long	i_ull = -146744073709551491;
 	char	c;
 	char	c_str[50] = "testing\0";
 	char	*c_ret;
@@ -40,7 +40,6 @@ int		main(void)
 	i_uint = 2147483650;
 	i_long = 2147483650;
 	i_ll = 0;
-	i_ull = 18446744073709551491;
 	c = 65;
 	// c_str = "test\0";
 	c_ret = NULL;

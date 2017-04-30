@@ -81,7 +81,7 @@ static int	ft_d_precision(t_print *ret)
 
 int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->flags.ln_mod = **fmt == 'D' ? 3 : 0; 
+	ret->flags.ln_mod = **fmt == 'D' ? 3 : ret->flags.ln_mod; 
 	if (ret->flags.ln_mod)
 		ft_new_len(ret, arg);
 	else
