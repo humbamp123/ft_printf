@@ -86,7 +86,7 @@ int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;
-	if (ret->var == LONG_MIN)
+	if (ret->flags.ln_mod == 3 && ret->var == LONG_MIN)
 		ret->tmp = strdup("9223372036854775808\0");
 	else
 		ret->tmp = ret->neg ? ft_itoa(-ret->var) : ft_itoa(ret->var);

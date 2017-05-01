@@ -55,6 +55,8 @@ int		main(void)
 	printf("{%3*d}\n", 0, 0);
 	ft_printf("{%3*d}\n", 0, 0);
 
+	printf("printf   : %15.4d|\n", -42);
+	ft_printf("ft_printf: %15.4d|\n", -42);
 	// printf("printf   : %+c +c|\n", 0);
 	// ft_printf("ft_printf: %+c +c|\n\n", 0);
 
@@ -62,8 +64,8 @@ int		main(void)
 	printf("printf   : %+c +c|\n", 0);
 	ft_printf("ft_printf: %+c +c|\n\n", 0);
 
-	printf("printf   : %lld O|\n", LONG_MAX);
-	ft_printf("ft_printf: %lld O|\n\n", LONG_MAX);
+	printf("printf   : %ld D|\n", LONG_MIN);
+	ft_printf("ft_printf: %D D|\n\n", LONG_MIN);
 
 	// printf("printf   : %D D|\n", LONG_MIN);
 	// ft_printf("ft_printf: %ld D|\n\n", LONG_MIN);
