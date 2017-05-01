@@ -52,8 +52,19 @@ int		main(void)
 	ld_ldouble = 2.123456789012345678901;
 	
 	i = 1;
-	printf("{%3*d}\n", 0, 0);
-	ft_printf("{%3*d}\n", 0, 0);
+
+	printf("printf   : %5%|\n");
+	ft_printf("ft_printf: %5%|\n");
+	
+	printf("printf   : %*c|\n", 0, 0);
+	ft_printf("ft_printf: %*c|\n", 0,  0);
+
+
+	printf("printf   : %zo, %zo|\n", 0, ULLONG_MAX);
+	ft_printf("ft_printf: %zo, %zo|\n", 0, ULLONG_MAX);
+
+	printf("{%.0u}\n", 0);
+	ft_printf("{%.0u}\n", 0);
 
 	printf("printf   : %15.4d|\n", -42);
 	ft_printf("ft_printf: %15.4d|\n", -42);

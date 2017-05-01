@@ -88,9 +88,11 @@ int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->flags.ln_mod = **fmt == 'U' ? 3 : ret->flags.ln_mod;
 	ft_new_len(ret, arg);
+	// printf("???%llu???\n", ret->var);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, ft_skip(fmt), 1);
-		ret->neg = (long long)ret->var < 0 ? 1 : 0;
+	ret->neg = ret->var < 0 ? 1 : 0;
+	// printf("%d\n", ret->neg);
 	if (ret->flags.ln_mod && ret->neg)
 		ft_u_negitoa(ret);
 	else	

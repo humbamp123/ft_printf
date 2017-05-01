@@ -61,7 +61,6 @@ char				*fin;
 int					save;
 char				*tmp;
 char				*text;
-char				*varchar;
 intmax_t			var;
 short				neg;
 t_flags				flags;

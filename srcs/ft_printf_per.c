@@ -16,7 +16,6 @@ int		ft_printf_per(t_print *ret, const char **fmt, va_list arg)
 {
 	char	*temp;
 
-	printf("_%%\n");
 	temp = ft_strdup("%\0");
 	ERW((ret->fin = ft_appender(ret->fin, temp)) == 0, -1, "Appending Error");
 	(*fmt)++;

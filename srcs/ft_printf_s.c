@@ -59,7 +59,7 @@ int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
 		}
 		if (ret->flags.width && ret->flags.width > (int)ft_strlen(ret->tmp))
 			ft_s_width(ret);
-		ERW((ret->fin = ft_appendit(ret, ret->tmp)) == 0, -1, "Appending Error");
+		ERW((ret->fin = ft_appender(ret->fin, ret->tmp)) == 0, -1, "Appending Error");
 	}
 	else
 	{
