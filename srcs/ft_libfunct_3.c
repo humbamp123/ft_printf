@@ -96,10 +96,10 @@ char		*ft_itoa_base(uintmax_t nbr, short base)
 		return (NULL);
 	while (--len)
 	{
-		str[len] = hex[nbr % base];
+		str[len] = HEX[nbr % base];
 		nbr = nbr / base;
 	}
-	str[len] = hex[nbr % base];
+	str[len] = HEX[nbr % base];
 	str[end] = '\0';
 	return (str);
 }

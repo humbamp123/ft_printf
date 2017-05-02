@@ -59,7 +59,7 @@ char		*ft_to_upper(char *str)
 	int		i;
 
 	i = 0;
-	while(str[i] != 0)
+	while (str[i] != 0)
 	{
 		str[i] = ft_upper(str[i]);
 		i++;

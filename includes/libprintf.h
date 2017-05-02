@@ -20,7 +20,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdint.h>
-# define hex "0123456789abcdef"
+# define HEX "0123456789abcdef"
 
 # ifndef ERRS
 #  define ERR(a, b) do{if(a){return(b);}}while(0)
@@ -40,7 +40,7 @@
 #  define ERW5(a,b,c,d,e,f,g,h) do{if(a){b;c;d;e;f;pl(h);return(g);}}while(0)
 # endif
 
-typedef struct 		s_flags
+typedef	struct		s_flags
 {
 	char			minus;
 	char			space;
@@ -55,17 +55,17 @@ typedef struct 		s_flags
 	int				cap;
 }					t_flags;
 
-typedef struct		s_print 
+typedef	struct		s_print
 {
-char				*fin;
-int					save;
-char				*tmp;
-char				*text;
-intmax_t			var;
-short				neg;
-t_flags				flags;
+	char			*fin;
+	int				save;
+	char			*tmp;
+	char			*text;
+	intmax_t		var;
+	char			neg;
+	char			zero;
+	t_flags			flags;
 }					t_print;
-
 
 void				pl(char const *s);
 void				*ft_memalloc(size_t size);
@@ -91,7 +91,6 @@ void				ft_memdel(void **ap);
 int					ft_isdigit(int c);
 int					ft_atoi(const char *str);
 
-
 int					ft_printf_c(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_s(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_d(t_print *ret, const char **fmt, va_list arg);
@@ -100,19 +99,18 @@ int					ft_printf_per(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_o(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_u(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_x(t_print *ret, const char **fmt, va_list arg);
-int					ft_printf_flags(t_print *ret, const char **fmt, va_list arg);
+int					ft_printf_flg(t_print *ret, const char **fmt, va_list arg);
 int					ft_width(t_print *ret, const char **fmt, va_list arg);
 int					ft_precision(t_print *ret, const char **fmt, va_list arg);
 int					ft_skip(const char **fmt);
 int					ft_len_mod(t_print *ret, const char **fmt, va_list arg);
 int					ft_new_len(t_print *ret, va_list arg);
 
-
+int					ft_queenies_crazy_write_function(char *str, int len);
 
 char				*ft_appendit(t_print *ret, char *str);
 char				*ft_appender(char *ret, char *str);
 char				*ft_to_upper(char *str);
-
 
 int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
 

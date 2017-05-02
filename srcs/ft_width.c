@@ -12,23 +12,38 @@
 
 #include "libprintf.h"
 
+	/*
+	**ERW((ret->var = ret->flags.ln_mod == 1 ? va_arg(arg, intmax_t) :
+	**ret->var) != 0, 0, "intmax_t");
+	**ERW((ret->var = ret->flags.ln_mod == 2 ? va_arg(arg, size_t) :
+	**(unsigned)ret->var ) != 0, 0, "size_t");
+	**ERW((ret->var = ret->flags.ln_mod == 3 ? va_arg(arg, long) :
+	**ret->var) != 0, 0, "long");
+	**ERW((ret->var = ret->flags.ln_mod == 4 ? va_arg(arg, long long) :
+	**ret->var) != 0, 0, "long long");
+	**ERW((ret->var = ret->flags.ln_mod == 5 ? (short)va_arg(arg, int) :
+	**ret->var) != 0, 0, "short");
+	**ERW((ret->var = ret->flags.ln_mod == 6 ? (char)va_arg(arg, int) :
+	**ret->var) != 0, 0, "char");
+	*/
+
 int			ft_new_len(t_print *ret, va_list arg)
 {
 	ret->var = 0;
-	ERR((ret->var = ret->flags.ln_mod == 0 ? va_arg(arg, int) : ret->var) != 0, 0);
-	ERR((ret->var = ret->flags.ln_mod == 1 ? va_arg(arg, intmax_t) : ret->var) != 0, 0);
-	ERR((ret->var = ret->flags.ln_mod == 2 ? va_arg(arg, size_t) : (unsigned)ret->var ) != 0, 0);
-	ERR((ret->var = ret->flags.ln_mod == 3 ? va_arg(arg, long) : ret->var) != 0, 0);
-	ERR((ret->var = ret->flags.ln_mod == 4 ? va_arg(arg, long long) : ret->var) != 0, 0);
-	ERR((ret->var = ret->flags.ln_mod == 5 ? (short)va_arg(arg, int) : ret->var) != 0, 0);
-	ERR((ret->var = ret->flags.ln_mod == 6 ? (char)va_arg(arg, int) : ret->var) != 0, 0);
-
-	// ERW((ret->var = ret->flags.ln_mod == 1 ? va_arg(arg, intmax_t) : ret->var) != 0, 0, "intmax_t");
-	// ERW((ret->var = ret->flags.ln_mod == 2 ? va_arg(arg, size_t) : (unsigned)ret->var ) != 0, 0, "size_t");
-	// ERW((ret->var = ret->flags.ln_mod == 3 ? va_arg(arg, long) : ret->var) != 0, 0, "long");
-	// ERW((ret->var = ret->flags.ln_mod == 4 ? va_arg(arg, long long) : ret->var) != 0, 0, "long long");
-	// ERW((ret->var = ret->flags.ln_mod == 5 ? (short)va_arg(arg, int) : ret->var) != 0, 0, "short");
-	// ERW((ret->var = ret->flags.ln_mod == 6 ? (char)va_arg(arg, int) : ret->var) != 0, 0, "char");
+	ERR((ret->var = ret->flags.ln_mod == 0 ? va_arg(arg, int) :
+	ret->var) != 0, 0);
+	ERR((ret->var = ret->flags.ln_mod == 1 ? va_arg(arg, intmax_t) :
+		ret->var) != 0, 0);
+	ERR((ret->var = ret->flags.ln_mod == 2 ? va_arg(arg, size_t) :
+		(unsigned)ret->var) != 0, 0);
+	ERR((ret->var = ret->flags.ln_mod == 3 ? va_arg(arg, long) :
+		ret->var) != 0, 0);
+	ERR((ret->var = ret->flags.ln_mod == 4 ? va_arg(arg, long long) :
+		ret->var) != 0, 0);
+	ERR((ret->var = ret->flags.ln_mod == 5 ? (short)va_arg(arg, int) :
+		ret->var) != 0, 0);
+	ERR((ret->var = ret->flags.ln_mod == 6 ? (char)va_arg(arg, int) :
+		ret->var) != 0, 0);
 	return (0);
 }
 
@@ -40,7 +55,7 @@ int			ft_len_mod(t_print *ret, const char **fmt, va_list arg)
 	ret->flags.ln_mod = ft_strnstr(*fmt, "ll", 2) ? 4 : ret->flags.ln_mod;
 	ret->flags.ln_mod = ft_strnstr(*fmt, "h", 1) ? 5 : ret->flags.ln_mod;
 	ret->flags.ln_mod = ft_strnstr(*fmt, "hh", 2) ? 6 : ret->flags.ln_mod;
-	while (**fmt == 'j'|| **fmt == 'z' || **fmt == 'l' || **fmt == 'h')
+	while (**fmt == 'j' || **fmt == 'z' || **fmt == 'l' || **fmt == 'h')
 		(*fmt)++;
 	return (0);
 	(void)arg;

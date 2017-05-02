@@ -48,7 +48,7 @@ void		*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	ft_strdel(char **as)
+void		ft_strdel(char **as)
 {
 	if (as)
 	{

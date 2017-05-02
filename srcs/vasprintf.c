@@ -12,33 +12,33 @@
 
 #include "libprintf.h"
 
-#define COUNT 37
+#define COUNT 38
 #define SIZE 3
 
 static	char	g_ary[COUNT][SIZE] = {
 	{"-"}, {"+"}, {" "}, {"#"},
 	{"0"}, {"*"}, {"1"}, {"2"},
 	{"3"}, {"4"}, {"5"}, {"6"},
-	{"7"}, {"8"}, {"9"}, {"."},
-	{"j"}, {"z"}, {"l"}, {"ll"},
-	{"h"}, {"hh"}, {"s"}, {"d"},
-	{"i"}, {"u"}, {"o"}, {"x"},
-	{"X"}, {"D"}, {"O"}, {"U"},
-	{"c"}, {"C"}, {"S"}, {"p"}, 
-	{"%"}};
+	{"7"}, {"8"}, {"9"}, {"*"},
+	{"."}, {"j"}, {"z"}, {"l"},
+	{"ll"}, {"h"}, {"hh"}, {"s"},
+	{"d"}, {"i"}, {"u"}, {"o"},
+	{"x"}, {"X"}, {"D"}, {"O"},
+	{"U"}, {"c"}, {"C"}, {"S"},
+	{"p"}, {"%"}};
 
 static	int		(*g_ft_ptr[COUNT]) (t_print *ret, const char **fmt,
 	va_list arg) = {
-	ft_printf_flags, ft_printf_flags, ft_printf_flags, ft_printf_flags,
-	ft_printf_flags, ft_width, ft_width, ft_width,
+	ft_printf_flg, ft_printf_flg, ft_printf_flg, ft_printf_flg,
+	ft_printf_flg, ft_width, ft_width, ft_width,
 	ft_width, ft_width, ft_width, ft_width,
-	ft_width, ft_width, ft_width, ft_precision,
-	ft_len_mod, ft_len_mod, ft_len_mod, ft_len_mod,
-	ft_len_mod, ft_len_mod, ft_printf_s, ft_printf_d,
-	ft_printf_d, ft_printf_u, ft_printf_o, ft_printf_x, 
-	ft_printf_x, ft_printf_d, ft_printf_o, ft_printf_u,
-	ft_printf_c, ft_printf_c, ft_printf_s, ft_printf_p,
-	ft_printf_p};
+	ft_width, ft_width, ft_width, ft_width,
+	ft_precision, ft_len_mod, ft_len_mod, ft_len_mod,
+	ft_len_mod, ft_len_mod, ft_len_mod, ft_printf_s,
+	ft_printf_d, ft_printf_d, ft_printf_u, ft_printf_o,
+	ft_printf_x, ft_printf_x, ft_printf_d, ft_printf_o,
+	ft_printf_u, ft_printf_c, ft_printf_c, ft_printf_s,
+	ft_printf_p, ft_printf_per};
 
 static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 {
@@ -58,7 +58,9 @@ static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 		i++;
 	}
 	ERR(**fmt == 0, 0);
-	// *g_ft_ptr[32];
+	ERR((rtn = ft_printf_per(ret, fmt, arg)) == -1, -1);
+	if (rtn > 0)
+		return (1);
 	return (0);
 }
 
@@ -67,7 +69,7 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 	t_print		list;
 	int			i;
 
-	list.save = 0;
+	ft_bzero(&list, sizeof(list));
 	while (*fmt)
 	{
 		i = 0;
@@ -77,7 +79,7 @@ static	int		checkthrough(char **ret, const char *fmt, va_list arg)
 		ERR((list.fin = ft_appendit(&list, list.text)) == NULL, -1);
 		if (list.save != 0)
 			ft_strdel(&list.text);
-		else
+		else if (list.fin)
 			list.save = 1;
 		fmt += i;
 		if (*fmt == '%')

@@ -12,22 +12,39 @@
 
 #include "libprintf.h"
 
-static int ft_u_negitoa(t_print *ret)
+	
+	/*
+	** ERW((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base((unsigned)ret->var
+	** + UINT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
+	** ERW((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base((unsigned)ret->var
+	** + SIZE_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
+	** ERW((ret->tmp = ret->flags.ln_mod == 3 ? ft_itoa_base(ret->var, 10)
+	** : ret->tmp) != NULL, 0, ret->tmp);
+	** ERW((ret->tmp = ret->flags.ln_mod == 4 ? ft_itoa_base((unsigned)ret->var
+	** + ULLONG_MAX, 10) : ret->tmp) != NULL, 0, ret->tmp);
+	** ERW((ret->tmp = ret->flags.ln_mod == 5 ? ft_itoa_base((unsigned)ret->var
+	** + USHRT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
+	** ERW((ret->tmp = ret->flags.ln_mod == 6 ? ft_itoa_base((unsigned)ret->var
+	** + UCHAR_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
+	*/
+
+static	int	ft_u_negitoa(t_print *ret)
 {
 	ret->tmp = NULL;
-	ERR((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 3 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 4 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 5 ? ft_itoa_base((unsigned)ret->var + USHRT_MAX + 1, 10) : ret->tmp) != NULL, 0);
-	ERR((ret->tmp = ret->flags.ln_mod == 6 ? ft_itoa_base((unsigned)ret->var + UCHAR_MAX + 1, 10) : ret->tmp) != NULL, 0);
-
-	// ERW((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base((unsigned)ret->var + UINT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	// ERW((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base((unsigned)ret->var + SIZE_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	// ERW((ret->tmp = ret->flags.ln_mod == 3 ? ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	// ERW((ret->tmp = ret->flags.ln_mod == 4 ? ft_itoa_base((unsigned)ret->var + ULLONG_MAX, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	// ERW((ret->tmp = ret->flags.ln_mod == 5 ? ft_itoa_base((unsigned)ret->var + USHRT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	// ERW((ret->tmp = ret->flags.ln_mod == 6 ? ft_itoa_base((unsigned)ret->var + UCHAR_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
+	ERR((ret->tmp = ret->flags.ln_mod == 1 ?
+		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 2 ?
+		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 3 ?
+		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 4 ?
+		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 5 ?
+		ft_itoa_base((unsigned)ret->var + USHRT_MAX + 1, 10) : ret->tmp)
+		!= NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 6 ?
+		ft_itoa_base((unsigned)ret->var + UCHAR_MAX + 1, 10) : ret->tmp)
+		!= NULL, 0);
 	return (0);
 }
 
@@ -42,7 +59,7 @@ static int	ft_u_width(t_print *ret)
 	int		spacelen;
 	char	*temp;
 
-	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus || 
+	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus ||
 		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
 		ret->flags.width - (int)ft_strlen(ret->tmp);
 	ERR1(spacelen <= 0, ft_u_flags(ret), 0);
@@ -71,11 +88,10 @@ static int	ft_u_precision(t_print *ret)
 	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) <= ret->flags.pres)
 	{
 		zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp);
-		ERR1(zerolen <= 0, ft_u_flags(ret), 0);
+		ERR(zerolen <= 0, 0);
 		temp = ft_strnew(zerolen + 1);
 		ft_memset(temp, '0', zerolen);
-		if (ret->flags.zero && !ret->neg)
-			ret->tmp = ft_appender(temp, ret->tmp);
+		ret->tmp = ft_appender(temp, ret->tmp);
 		ret->flags.pres = ft_strlen(ret->tmp);
 	}
 	else if (ret->flags.pres != 0)
@@ -83,20 +99,17 @@ static int	ft_u_precision(t_print *ret)
 	return (0);
 }
 
-// (unsigned long long)ret->var + ULLONG_MAX + 1
 int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->flags.ln_mod = **fmt == 'U' ? 3 : ret->flags.ln_mod;
 	ft_new_len(ret, arg);
-	// printf("???%llu???\n", ret->var);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
-		== 0, ft_skip(fmt), 1);
+		== 0, (*fmt)++, 1);
 	ret->neg = ret->var < 0 ? 1 : 0;
-	// printf("%d\n", ret->neg);
 	if (ret->flags.ln_mod && ret->neg)
 		ft_u_negitoa(ret);
-	else	
-		ret->tmp = ret->neg ? ft_itoa_base((unsigned)ret->var, 10):
+	else
+		ret->tmp = ret->neg ? ft_itoa_base((unsigned)ret->var, 10) :
 			ft_itoa_base(ret->var, 10);
 	if (ret->flags.in_pres == 1)
 		ft_u_precision(ret);

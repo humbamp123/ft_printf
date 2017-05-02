@@ -12,7 +12,7 @@
 
 #include "libprintf.h"
 
-int		ft_printf_flags(t_print *ret, const char **fmt, va_list arg)
+int		ft_printf_flg(t_print *ret, const char **fmt, va_list arg)
 {
 	while (**fmt && (**fmt == ' ' || **fmt == '-' || **fmt == '+' ||
 		**fmt == '#' || **fmt == '0'))

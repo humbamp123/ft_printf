@@ -17,9 +17,11 @@ static int	ft_s_width(t_print *ret)
 	int		spacelen;
 	char	*temp;
 
-	spacelen = ret->flags.width - (int)ft_strlen(ret->tmp);
+	spacelen = ret->tmp != 0 ? ret->flags.width - (int)ft_strlen(ret->tmp) :
+		ret->flags.width;
 	temp = ft_strnew(spacelen + 1);
-	if (!ret->flags.in_pres && !ret->flags.minus && ret->flags.zero)
+	if ((!ret->flags.in_pres || ret->flags.pres <= (int)ft_strlen(ret->tmp)) &&
+		!ret->flags.minus && ret->flags.zero)
 	{
 		ft_memset(temp, '0', spacelen);
 		ret->tmp = ft_appender(temp, ret->tmp);
@@ -46,21 +48,23 @@ static int	ft_s_precision(t_print *ret)
 	return (0);
 }
 
-int		ft_printf_s(t_print *ret, const char **fmt, va_list arg)
+int			ft_printf_s(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->tmp = va_arg(arg, char *);
+	ret->tmp = ret->flags.in_pres && !ret->flags.pres ? ft_strdup("\0") :
+		va_arg(arg, char *);
 	ret->tmp = ret->tmp ? ft_strdup(ret->tmp) : NULL;
 	if (ret->tmp)
 	{
-		if (ret->flags.in_pres == 1)
-		{
-			ERR2(ret->flags.pres == 0, ft_strdel(&ret->tmp), (*fmt)++, 1);
+		ERR2(ret->flags.in_pres && ret->flags.pres == 0 && !ret->flags.width,
+			ft_strdel(&ret->tmp), (*fmt)++, 1);
+		if (ret->flags.in_pres == 1 && ret->flags.pres != 0)
 			ft_s_precision(ret);
-		}
 		if (ret->flags.width && ret->flags.width > (int)ft_strlen(ret->tmp))
 			ft_s_width(ret);
-		ERW((ret->fin = ft_appender(ret->fin, ret->tmp)) == 0, -1, "Appending Error");
+		ERR((ret->fin = ft_appender(ret->fin, ret->tmp)) == 0, -1);
 	}
+	else if (!ret->tmp && !ret->flags.pres && ret->flags.in_pres)
+		ft_s_width(ret);
 	else
 	{
 		ret->tmp = ft_strdup("(null)\0");

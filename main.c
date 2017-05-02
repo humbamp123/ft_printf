@@ -53,45 +53,113 @@ int		main(void)
 	
 	i = 1;
 
-	printf("printf   : %5%|\n");
-	ft_printf("ft_printf: %5%|\n");
+	printf("printf   : %jx|\n", -4294967296);
+	ft_printf("ft_printf: %jx|\n", -4294967296);
+
+	printf("printf   : %o, %ho, %hho|\n", -42, -42, -42);
+	ft_printf("ft_printf: %o, %ho, %hho|\n", -42, -42, -42);
+
+
+	// printf("printf   : %#.5x|\n", 1);
+	// ft_printf("ft_printf: %#.5x|\n", 1);
+
+	// printf("printf   : %.o, %.0o|\n", 0, 0);
+	// ft_printf("ft_printf: %.o, %.0o|\n", 0, 0);
+
+	// printf("printf   : %#.x, %#.0x|\n", 0, 0);
+	// ft_printf("ft_printf: %#.x, %#.0x|\n", 0, 0);
+
+	// printf("printf   : %05.%|\n", 0);
+	// ft_printf("ft_printf: %05.%|\n", 0);
+
+	// printf("printf   : %05.s|\n", 0);
+	// ft_printf("ft_printf: %05.s|\n", 0);
+
+	// printf("printf   : %05.c|\n", 0);
+	// ft_printf("ft_printf: %05.c|\n", 0);
+
+	// printf("printf   : %#.o, %#.0o|\n", 0, 0);
+	// ft_printf("ft_printf: %#.o, %#.0o|\n", 0, 0);
+
+	// printf("printf   : %4.s|\n", "42");
+	// ft_printf("ft_printf: %4.s|\n", "42");
+
+	// printf("printf   : %*.*d|\n", 0, 3, 0);
+	// ft_printf("ft_printf: %*.*d|\n", 0, 3, 0);
+
+	// printf("printf   : %.*d|\n", 5, 42);
+	// ft_printf("ft_printf: %.*d|\n", 5, 42);
+
+	// printf("printf   : %.4d|\n", 42);
+	// ft_printf("ft_printf: %.4d|\n", 42);
+
+	// printf("printf   : %03.2d|\n", 0);
+	// ft_printf("ft_printf: %03.2d|\n", 0);
+
+	// printf("printf   : %3*p|\n", 10, 0);
+	// ft_printf("ft_printf: %3*p|\n", 10, 0);
+
+	// printf("printf   : %5p|\n", 0);
+	// ft_printf("ft_printf: %5p|\n", 0);
+
+
+	// printf("printf   : %.5p|\n", 0);
+	// ft_printf("ft_printf: %.5p|\n", 0);
+
+	// printf("printf   : %.5p|\n", 0);
+	// ft_printf("ft_printf: %.5p|\n", 0);
+
+
+	// printf("printf   : {%.c}\n", 0);
+	// ft_printf("ft_printf: {%.c}\n", 0);
+
+
+
+
+	// printf("printf   : %5%|\n");
+
+	// ft_printf("ft_printf: %5%|\n");
 	
-	printf("printf   : %*c|\n", 0, 0);
-	ft_printf("ft_printf: %*c|\n", 0,  0);
+	// printf("%d\n", printf("printf   : %c|\n", 0));
+	// printf("%d\n", ft_printf("ft_printf: %c|\n", 0));
 
 
-	printf("printf   : %zo, %zo|\n", 0, ULLONG_MAX);
-	ft_printf("ft_printf: %zo, %zo|\n", 0, ULLONG_MAX);
+	// printf("printf   : %zo, %zo|\n", 0, ULLONG_MAX);
+	// ft_printf("ft_printf: %zo, %zo|\n", 0, ULLONG_MAX);
 
-	printf("{%.0u}\n", 0);
-	ft_printf("{%.0u}\n", 0);
+	// printf("{%5^\n");
+	// ft_printf("{%5^\n");
 
-	printf("printf   : %15.4d|\n", -42);
-	ft_printf("ft_printf: %15.4d|\n", -42);
+	// printf("\n");
+	// printf("printf   : %15.4d|\n", -42);
+	// ft_printf("ft_printf: %15.4d|\n", -42);
+
+	// printf("printf   : %8.4d|\n", -424242424);
+	// printf("ft_printf: %8.4d|\n", -424242424);
+	// // printf("printf   : %+c +c|\n", 0);
+	// // ft_printf("ft_printf: %+c +c|\n\n", 0);
+
+
 	// printf("printf   : %+c +c|\n", 0);
 	// ft_printf("ft_printf: %+c +c|\n\n", 0);
 
+	// printf("printf   : %ld D|\n", LONG_MIN);
+	// ft_printf("ft_printf: %D D|\n\n", LONG_MIN);
 
-	printf("printf   : %+c +c|\n", 0);
-	ft_printf("ft_printf: %+c +c|\n\n", 0);
+	// // printf("printf   : %D D|\n", LONG_MIN);
+	// // ft_printf("ft_printf: %ld D|\n\n", LONG_MIN);
 
-	printf("printf   : %ld D|\n", LONG_MIN);
-	ft_printf("ft_printf: %D D|\n\n", LONG_MIN);
+	// printf("printf   : %5.5lu lu|\n", i_long);
+	// ft_printf("ft_printf: %5.5lu lu|\n\n", i_long);
 
-	// printf("printf   : %D D|\n", LONG_MIN);
-	// ft_printf("ft_printf: %ld D|\n\n", LONG_MIN);
+	// printf("printf   : %lu lu|\n", i_ull);
+	// ft_printf("ft_printf: %lu lu\n\n", i_ull);
 
-	printf("printf   : %5.5lu lu|\n", i_long);
-	ft_printf("ft_printf: %5.5lu lu|\n\n", i_long);
+	// printf("printf   : %U U|\n", -146744073709551491);
+	// ft_printf("ft_printf: %U U|\n\n", -146744073709551491);
 
-	printf("printf   : %lu lu|\n", i_ull);
-	ft_printf("ft_printf: %lu lu\n\n", i_ull);
-
-	printf("printf   : %U U|\n", -146744073709551491);
-	ft_printf("ft_printf: %U U|\n\n", -146744073709551491);
-
-	printf("printf   : %U U|\n", -42);
-	ft_printf("ft_printf: %U U|\n\n", -42);
+	// printf("printf   : %U U|\n", -42);
+	// ft_printf("ft_printf: %U U|\n\n", -42);
 
 	// ft_printf("%.*s|", 10, c_str);
 	// printf("% #X", -10);

@@ -12,25 +12,63 @@
 
 #include "libprintf.h"
 
-int				ft_printf_p(t_print *ret, const char **fmt, va_list arg)
+static	int	ft_p_width(t_print *ret)
+{
+	int		spacelen;
+	char	*temp;
+
+	spacelen = ret->tmp[0] != 0 ?
+		ret->flags.width - (int)ft_strlen(ret->tmp) :
+		ret->flags.width - 1;
+	temp = ft_strnew(spacelen + 1);
+	if (!ret->flags.in_pres && !ret->flags.minus && ret->flags.zero)
+	{
+		ft_memset(temp, '0', spacelen);
+		ret->tmp = ft_appender(temp, ret->tmp);
+	}
+	else
+	{
+		ft_memset(temp, ' ', spacelen);
+		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
+			ft_appender(temp, ret->tmp);
+	}
+	return (0);
+}
+
+static int	ft_p_precision(t_print *ret)
 {
 	char	*temp;
-	void	*temper;
+	int		zerolen;
 
-	if (**fmt == '%')
+	if (ret->flags.pres > 0 && (int)ft_strlen(ret->tmp) + 2 <= ret->flags.pres)
 	{
-		temp = ft_strdup("%\0");
-		ERR((ret->fin = ft_appender(ret->fin, temp)) == 0, -1);
-		(*fmt)++;
+		zerolen = ret->flags.pres - (int)ft_strlen(ret->tmp) - 2;
+		temp = ft_strnew(zerolen + 1);
+		ft_memset(temp, '0', zerolen);
+		ret->tmp = ft_appender(temp, ret->tmp);
+		ret->flags.pres = ft_strlen(ret->tmp);
 	}
-	else if (**fmt == 'p')
+	return (0);
+}
+
+int			ft_printf_p(t_print *ret, const char **fmt, va_list arg)
+{
+	char	*temp;
+
+	temp = ft_strdup("0x\0");
+	ret->var = (intmax_t)va_arg(arg, void *);
+	ERR2(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
+		== 0, ret->fin = ft_appender(ret->fin, temp), (*fmt)++, 1);
+	ret->tmp = ft_itoa_base((uintmax_t)ret->var, 16);
+	if (ret->flags.in_pres == 1 && ret->flags.pres)
 	{
-		temp = ft_strdup("0x\0");
-		temper = va_arg(arg, void *);
-		ERR((temp = ft_appender(temp, ft_itoa_base((uintmax_t)temper, 16)))
-			== 0, -1);
-		ERR((ret->fin = ft_appender(ret->fin, temp)) == 0, -1);
-		(*fmt)++;
+		ret->flags.pres = ret->flags.pres + 2;
+		ft_p_precision(ret);
 	}
+	ret->tmp = ft_appender(temp, ret->tmp);
+	if (ret->flags.width && ret->flags.width > (int)ft_strlen(ret->tmp))
+		ft_p_width(ret);
+	ERR((ret->fin = ft_appender(ret->fin, ret->tmp)) == 0, -1);
+	(*fmt)++;
 	return (1);
 }
