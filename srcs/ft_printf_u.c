@@ -32,12 +32,6 @@ static	int	ft_u_negitoa(t_print *ret)
 	return (0);
 }
 
-static int	ft_u_flags(t_print *ret)
-{
-	return (0);
-	(void)ret;
-}
-
 static int	ft_u_width(t_print *ret)
 {
 	int		spacelen;
@@ -46,18 +40,16 @@ static int	ft_u_width(t_print *ret)
 	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus ||
 		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) :
 		ret->flags.width - (int)ft_strlen(ret->tmp);
-	ERR1(spacelen <= 0, ft_u_flags(ret), 0);
+	ERR(spacelen <= 0, 0);
 	temp = ft_strnew(spacelen + 1);
 	if (!ret->flags.in_pres && !ret->flags.minus && ret->flags.zero)
 	{
 		ft_memset(temp, '0', spacelen);
 		ret->tmp = ft_appender(temp, ret->tmp);
-		ft_u_flags(ret);
 	}
 	else
 	{
 		ft_memset(temp, ' ', spacelen);
-		ft_u_flags(ret);
 		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
 			ft_appender(temp, ret->tmp);
 	}
@@ -78,8 +70,6 @@ static int	ft_u_precision(t_print *ret)
 		ret->tmp = ft_appender(temp, ret->tmp);
 		ret->flags.pres = ft_strlen(ret->tmp);
 	}
-	else if (ret->flags.pres != 0)
-		ft_u_flags(ret);
 	return (0);
 }
 
@@ -99,9 +89,6 @@ int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 		ft_u_precision(ret);
 	if (ret->flags.width && ret->flags.width > ret->flags.pres)
 		ft_u_width(ret);
-	if ((ret->flags.flgs || ret->neg) && ret->flags.pres == 0 &&
-			ret->flags.width == 0)
-		ft_u_flags(ret);
 	ret->fin = ft_appender(ret->fin, ret->tmp);
 	(*fmt)++;
 	return (1);

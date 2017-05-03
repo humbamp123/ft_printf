@@ -14,7 +14,6 @@
 
 int		ft_signed(t_print *ret)
 {
-	printf("%d\n", ret->flags.ln_mod);
 	if (ret->flags.ln_mod == 1)
 		ret->tmp = (intmax_t)ret->var < 0 ? ft_itoa_base(-(intmax_t)ret->var,
 			10) : ft_itoa_base((intmax_t)ret->var, 10);
@@ -51,4 +50,48 @@ int		ft_printf_flg(t_print *ret, const char **fmt, va_list arg)
 	}
 	return (0);
 	(void)arg;
+}
+
+char	*ft_wide_char(wchar_t var)
+{
+	char	*temp;
+
+	temp = ft_strnew(4);
+	if (var <= 127)
+		temp[0] = var;
+	else if (var <= 2047)
+	{
+		temp[0] = 192 | (var >> 6);
+		temp[1] = 128 | (var & 63);
+	}
+	else if (var <= 65535)
+	{
+		temp[0] = 224 | (var >> 12);
+		temp[1] = 128 | (var >> 6 & 63);
+		temp[2] = 128 | (var & 63);
+	}
+	else if (var <= 131071)
+	{
+		temp[0] = 240 | (var >> 18);
+		temp[1] = 128 | (var >> 12 & 63);
+		temp[2] = 128 | (var >> 6 & 63);
+		temp[3] = 128 | (var & 63);
+	}
+	return (temp);
+}
+
+int		ft_queenies_crazy_write(int fd, char *str, int len)
+{
+	char null;
+
+	null = '\0';
+	while (len--)
+	{
+		if (*str == 7)
+			write(fd, &null, 1);
+		else
+			ERR(write(fd, &*str, 1) == -1, -1);
+		str++;
+	}
+	return (1);
 }

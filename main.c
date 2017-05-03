@@ -11,10 +11,13 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <locale.h>
+#include <wchar.h>
 #include "libprintf.h"
 
 int		main(void)
 {
+	setlocale (LC_ALL, "");
 	int		i_int;
 	long	i_long;
 	long long	i_ll;
@@ -50,11 +53,39 @@ int		main(void)
 	f_float = 2.2;
 	d_double = 2.12345678901234;
 	ld_ldouble = 2.123456789012345678901;
+
 	
 	i = 1;
 
-	printf("printf   : %zhd|zhd\n", "4294967296");
-	ft_printf("ft_printf: %zhd|zhd\n", "4294967296");
+	printf("printf   : %.10S|.4S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ft_printf("ft_printf: %.10S|.4S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+
+	printf("printf   : %.4S|.4S\n", L"औऔऔऔऔ");
+	ft_printf("ft_printf: %.4S|.4S\n", L"औऔऔऔऔ");
+
+	// printf("printf   : %05.S|05.S\n", L"42 c est cool");
+	// ft_printf("ft_printf: %05.S|05.S\n", L"42 c est cool");
+
+
+	// printf("printf   : %ls, %ls|ls\n", L"ÊM-^ZM-^VÁM-^BM-^I", L"ÊM-^ZM-^VÁM-^BM-^I");
+	// ft_printf("ft_printf: %ls, %ls|ls\n", L"ÊM-^ZM-^VÁM-^BM-^I", L"ÊM-^ZM-^VÁM-^BM-^I");
+
+	// printf("printf   : %hhS, %hhS|hhS\n", 0, L"Á±≥Á±≥");
+	// ft_printf("ft_printf: %hhS, %hhS|hhS\n", 0, L"Á±≥Á±≥");
+
+
+	// printf("printf   : % S| S\n", L"");
+	// ft_printf("ft_printf: % S| S\n", L"");
+
+
+	// printf("printf   : %lc, %lc|lc\n", L'ÊM-^ZM-^V', L'ÿ≠');
+	// ft_printf("ft_printf: %lc, %lc|lc\n", L'ÊM-^ZM-^V', L'ÿ≠');
+
+		// printf("printf   : %jhd|jhd\n", "9223372036854775807");
+		// ft_printf("ft_printf: %jhd|jhd\n", "9223372036854775807");
+
+		// printf("printf   : %zhd|zhd\n", "4294967296");
+		// ft_printf("ft_printf: %zhd|zhd\n", "4294967296");
 
 	// printf("printf   : %hhd|hhd\n", 128);
 	// ft_printf("ft_printf: %hhd|hhd\n", 128);

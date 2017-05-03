@@ -85,7 +85,6 @@ int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->flags.ln_mod = **fmt == 'D' ? 3 : ret->flags.ln_mod;
 	ft_new_len(ret, arg);
-	printf("%hd\n", ret->var);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0 && !ret->flags.width, (*fmt)++, 1);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;

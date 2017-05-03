@@ -37,7 +37,7 @@ static	int		(*g_ft_ptr[COUNT]) (t_print *ret, const char **fmt,
 	ft_len_mod, ft_len_mod, ft_len_mod, ft_printf_s,
 	ft_printf_d, ft_printf_d, ft_printf_u, ft_printf_o,
 	ft_printf_x, ft_printf_x, ft_printf_d, ft_printf_o,
-	ft_printf_u, ft_printf_c, ft_printf_c, ft_printf_s,
+	ft_printf_u, ft_printf_c, ft_printf_c, ft_printf_c_s,
 	ft_printf_p, ft_printf_per};
 
 static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)

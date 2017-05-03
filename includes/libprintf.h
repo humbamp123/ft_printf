@@ -65,9 +65,18 @@ typedef	struct		s_print
 	t_flags			flags;
 }					t_print;
 
+int					ft_printf(const char *format, ...);
+int					ft_vprintf(const char *format, va_list args);
+
+int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
+int					ft_queenies_crazy_write(int fd, char *str, int len);
+
+char				*ft_appendit(t_print *ret, char *str);
+char				*ft_appender(char *ret, char *str);
+char				*ft_to_upper(char *str);
+
 void				pl(char const *s);
 void				*ft_memalloc(size_t size);
-int					ft_printf(const char *format, ...);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strcpy(char *dst, const char *src);
 size_t				ft_strlen(const char *s);
@@ -91,6 +100,7 @@ int					ft_atoi(const char *str);
 
 int					ft_printf_c(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_s(t_print *ret, const char **fmt, va_list arg);
+int					ft_printf_c_s(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_d(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_p(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_per(t_print *ret, const char **fmt, va_list arg);
@@ -103,13 +113,6 @@ int					ft_precision(t_print *ret, const char **fmt, va_list arg);
 int					ft_len_mod(t_print *ret, const char **fmt, va_list arg);
 int					ft_new_len(t_print *ret, va_list arg);
 int					ft_signed(t_print *ret);
-
-int					ft_queenies_crazy_write(int fd, char *str, int len);
-
-char				*ft_appendit(t_print *ret, char *str);
-char				*ft_appender(char *ret, char *str);
-char				*ft_to_upper(char *str);
-
-int					ft_vasprintf(char **ret, const char *fmt, va_list arg);
+char				*ft_wide_char(wchar_t var);
 
 #endif

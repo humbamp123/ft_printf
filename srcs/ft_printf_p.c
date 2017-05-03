@@ -20,6 +20,7 @@ static	int	ft_p_width(t_print *ret)
 	spacelen = ret->tmp[0] != 0 ?
 		ret->flags.width - (int)ft_strlen(ret->tmp) :
 		ret->flags.width - 1;
+	spacelen = ret->flags.width && ret->flags.zero ? spacelen - 2 : spacelen;
 	temp = ft_strnew(spacelen + 1);
 	if (!ret->flags.in_pres && !ret->flags.minus && ret->flags.zero)
 	{
@@ -65,9 +66,12 @@ int			ft_printf_p(t_print *ret, const char **fmt, va_list arg)
 		ret->flags.pres = ret->flags.pres + 2;
 		ft_p_precision(ret);
 	}
-	ret->tmp = ft_appender(temp, ret->tmp);
+	ret->tmp = ret->flags.width > ret->flags.pres && !ret->flags.zero ?
+		ft_appender(temp, ret->tmp) : ret->tmp;
 	if (ret->flags.width && ret->flags.width > (int)ft_strlen(ret->tmp))
 		ft_p_width(ret);
+	ret->tmp = ft_strchr(ret->tmp, 'x') == NULL ? ft_appender(temp, ret->tmp) :
+		ret->tmp;
 	ERR((ret->fin = ft_appender(ret->fin, ret->tmp)) == 0, -1);
 	(*fmt)++;
 	return (1);
