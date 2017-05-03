@@ -23,21 +23,19 @@
 # define HEX "0123456789abcdef"
 
 # ifndef ERRS
-#  define ERR(a, b) do{if(a){return(b);}}while(0)
-#  define ERR1(a, b, c) do{if(a){b;return(c);}}while(0)
-#  define ERR2(a, b, c, d) do{if(a){b;c;return(d);}}while(0)
-#  define ERR3(a, b, c, d, e) do{if(a){b;c;d;return(e);}}while(0)
-#  define ERR4(a, b, c, d, e, f) do{if(a){b;c;d;e;return(f);}}while(0)
-#  define ERR5(a, b, c, d, e, f, g) do{if(a){b;c;d;e;f;return(g);}}while(0)
+#  define ERR(a, b) while(1){if(a){return(b);}break;}
+#  define ERR1(a, b, c) while(1){if(a){b;return(c);}break;}
+#  define ERR2(a, b, c, d) while(1){if(a){b;c;return(d);}break;}
+#  define ERR3(a, b, c, d, e) while(1){if(a){b;c;d;return(e);}break;}
+#  define ERR4(a, b, c, d, e, f) while(1){if(a){b;c;d;e;return(f);}break;}
 # endif
 
 # ifndef ERWS
-#  define ERW(a,b,c) do{if(a){pl(c); return(b);}}while(0)
-#  define ERW1(a,b,c,d) do{if(a){b;pl(d);return(c);}}while(0)
-#  define ERW2(a,b,c,d,e) do{if(a){b;c;pl(e);return(d);}}while(0)
-#  define ERW3(a,b,c,d,e,f) do{if(a){b;c;d;pl(f);return(e);}}while(0)
-#  define ERW4(a,b,c,d,e,f,g) do{if(a){b;c;d;e;pl(g);return(f);}}while(0)
-#  define ERW5(a,b,c,d,e,f,g,h) do{if(a){b;c;d;e;f;pl(h);return(g);}}while(0)
+#  define ERW(a,b,c) while(1){if(a){pl(c); return(b);}break;}
+#  define ERW1(a,b,c,d) while(1){if(a){b;pl(d);return(c);}break;}
+#  define ERW2(a,b,c,d,e) while(1){if(a){b;c;pl(e);return(d);}break;}
+#  define ERW3(a,b,c,d,e,f) while(1){if(a){b;c;d;pl(f);return(e);}break;}
+#  define ERW4(a,b,c,d,e,f,g) while(1){if(a){b;c;d;e;pl(g);return(f);}break;}
 # endif
 
 typedef	struct		s_flags
@@ -49,6 +47,7 @@ typedef	struct		s_flags
 	char			zero;
 	char			flgs;
 	char			ln_mod;
+	int				num;
 	int				width;
 	int				pres;
 	char			in_pres;
@@ -61,9 +60,8 @@ typedef	struct		s_print
 	int				save;
 	char			*tmp;
 	char			*text;
-	intmax_t		var;
+	uintmax_t		var;
 	char			neg;
-	char			zero;
 	t_flags			flags;
 }					t_print;
 
@@ -102,11 +100,11 @@ int					ft_printf_x(t_print *ret, const char **fmt, va_list arg);
 int					ft_printf_flg(t_print *ret, const char **fmt, va_list arg);
 int					ft_width(t_print *ret, const char **fmt, va_list arg);
 int					ft_precision(t_print *ret, const char **fmt, va_list arg);
-int					ft_skip(const char **fmt);
 int					ft_len_mod(t_print *ret, const char **fmt, va_list arg);
 int					ft_new_len(t_print *ret, va_list arg);
+int					ft_signed(t_print *ret);
 
-int					ft_queenies_crazy_write_function(char *str, int len);
+int					ft_queenies_crazy_write(int fd, char *str, int len);
 
 char				*ft_appendit(t_print *ret, char *str);
 char				*ft_appender(char *ret, char *str);

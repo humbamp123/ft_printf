@@ -50,8 +50,10 @@ static	int	ft_c_precision(t_print *ret)
 
 int			ft_printf_c(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->tmp = ft_strnew(1);
-	ret->tmp[0] = va_arg(arg, int);
+	ret->tmp = ft_strnew(2);
+	ret->flags.ln_mod = **fmt == 'C' ? 3 : ret->flags.ln_mod;
+	ret->tmp[0] = ret->flags.ln_mod == 3 ?
+		va_arg(arg, long) : va_arg(arg, int);
 	ret->tmp[0] = ret->tmp[0] == 0 ? 7 : ret->tmp[0];
 	if (ret->flags.in_pres == 1 && ret->flags.pres)
 		ft_c_precision(ret);

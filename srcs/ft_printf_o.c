@@ -12,6 +12,26 @@
 
 #include "libprintf.h"
 
+static	int	ft_o_negitoa(t_print *ret)
+{
+	ret->tmp = NULL;
+	ERR((ret->tmp = ret->flags.ln_mod == 1 ?
+		ft_itoa_base(ret->var, 8) : NULL) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 2 ?
+		ft_itoa_base(ret->var, 8) : NULL) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 3 ?
+		ft_itoa_base(ret->var, 8) : NULL) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 4 ?
+		ft_itoa_base(ret->var, 8) : NULL) != NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 5 ?
+		ft_itoa_base((unsigned)ret->var + USHRT_MAX + 1, 8) : NULL)
+		!= NULL, 0);
+	ERR((ret->tmp = ret->flags.ln_mod == 6 ?
+		ft_itoa_base((unsigned)ret->var + UCHAR_MAX + 1, 8) : NULL)
+		!= NULL, 0);
+	return (0);
+}
+
 static int	ft_o_flags(t_print *ret)
 {
 	ret->tmp = ret->flags.pound && ret->var != 0 ? ft_appender(ft_strdup("0\0"),
@@ -24,8 +44,8 @@ static int	ft_o_width(t_print *ret)
 	int		spacelen;
 	char	*temp;
 
-	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus ||
-		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
+	spacelen = ret->flags.pound ?
+		ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
 		ret->flags.width - (int)ft_strlen(ret->tmp);
 	ERR1(spacelen <= 0, ft_o_flags(ret), 0);
 	temp = ft_strnew(spacelen + 1);
@@ -69,10 +89,12 @@ int			ft_printf_o(t_print *ret, const char **fmt, va_list arg)
 	ret->flags.ln_mod = **fmt == 'O' ? 3 : ret->flags.ln_mod;
 	ft_new_len(ret, arg);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
-		== 0 && !ret->flags.pound, (*fmt)++, 0);
+		== 0 && !ret->flags.width && !ret->flags.pound, (*fmt)++, 0);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;
-	if (ret->flags.ln_mod == 3 && ret->var == LONG_MIN)
-		ret->tmp = strdup("9223372036854775808\0");
+	if (ret->var == 0 && ret->flags.width && ret->flags.in_pres)
+		ret->tmp = ft_strdup("\0");
+	else if (ret->flags.ln_mod && ret->neg)
+		ft_o_negitoa(ret);
 	else
 		ret->tmp = ret->neg ? ft_itoa_base((unsigned)ret->var, 8) :
 			ft_itoa_base(ret->var, 8);

@@ -50,7 +50,7 @@ static int	ft_per_precision(t_print *ret)
 
 int			ft_printf_per(t_print *ret, const char **fmt, va_list arg)
 {
-	ret->tmp = ft_strnew(1);
+	ret->tmp = ft_strnew(2);
 	ret->tmp[0] = **fmt;
 	if (ret->flags.in_pres == 1 && ret->flags.pres)
 	{

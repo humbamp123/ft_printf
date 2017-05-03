@@ -25,25 +25,25 @@ static int	ft_d_flags(t_print *ret)
 
 static int	ft_d_width(t_print *ret)
 {
-	int		spacelen;
 	char	*temp;
 
-	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus ||
-		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
+	ret->flags.num = ((ret->flags.plus || ret->neg) && ret->flags.width &&
+		!ret->flags.in_pres) || (ret->flags.space && !ret->flags.in_pres) ?
+		ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
 		ret->flags.width - (int)ft_strlen(ret->tmp);
-	ERR(spacelen <= 0 && ret->flags.in_pres, 0);
-	ERR1(spacelen <= 0 && !ret->flags.in_pres, ft_d_flags(ret), 0);
-	temp = ft_strnew(spacelen + 1);
+	ERR(ret->flags.num <= 0 && ret->flags.in_pres, 0);
+	ERR1(ret->flags.num <= 0 && !ret->flags.in_pres, ft_d_flags(ret), 0);
+	temp = ft_strnew(ret->flags.num + 1);
 	if ((!ret->flags.in_pres || ret->flags.pres < (int)ft_strlen(ret->tmp)) &&
 		!ret->flags.minus && ret->flags.zero)
 	{
-		ft_memset(temp, '0', spacelen);
+		ft_memset(temp, '0', ret->flags.num);
 		ret->tmp = ft_appender(temp, ret->tmp);
 		ft_d_flags(ret);
 	}
 	else
 	{
-		ft_memset(temp, ' ', spacelen);
+		ft_memset(temp, ' ', ret->flags.num);
 		if (!ret->flags.in_pres)
 			ft_d_flags(ret);
 		ret->tmp = ret->flags.minus ? ft_appender(ret->tmp, temp) :
@@ -85,11 +85,14 @@ int			ft_printf_d(t_print *ret, const char **fmt, va_list arg)
 {
 	ret->flags.ln_mod = **fmt == 'D' ? 3 : ret->flags.ln_mod;
 	ft_new_len(ret, arg);
+	printf("%hd\n", ret->var);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
-		== 0, (*fmt)++, 1);
+		== 0 && !ret->flags.width, (*fmt)++, 1);
 	ret->neg = (long long)ret->var < 0 ? 1 : 0;
-	if (ret->flags.ln_mod == 3 && ret->var == LONG_MIN)
-		ret->tmp = strdup("9223372036854775808\0");
+	if (ret->var == 0 && ret->flags.width && ret->flags.in_pres)
+		ret->tmp = ft_strdup("\0");
+	else if (ret->flags.ln_mod)
+		ft_signed(ret);
 	else
 		ret->tmp = ret->neg ? ft_itoa(-ret->var) : ft_itoa(ret->var);
 	if (ret->flags.in_pres == 1)

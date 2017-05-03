@@ -12,38 +12,22 @@
 
 #include "libprintf.h"
 
-	
-	/*
-	** ERW((ret->tmp = ret->flags.ln_mod == 1 ? ft_itoa_base((unsigned)ret->var
-	** + UINT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	** ERW((ret->tmp = ret->flags.ln_mod == 2 ? ft_itoa_base((unsigned)ret->var
-	** + SIZE_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	** ERW((ret->tmp = ret->flags.ln_mod == 3 ? ft_itoa_base(ret->var, 10)
-	** : ret->tmp) != NULL, 0, ret->tmp);
-	** ERW((ret->tmp = ret->flags.ln_mod == 4 ? ft_itoa_base((unsigned)ret->var
-	** + ULLONG_MAX, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	** ERW((ret->tmp = ret->flags.ln_mod == 5 ? ft_itoa_base((unsigned)ret->var
-	** + USHRT_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	** ERW((ret->tmp = ret->flags.ln_mod == 6 ? ft_itoa_base((unsigned)ret->var
-	** + UCHAR_MAX + 1, 10) : ret->tmp) != NULL, 0, ret->tmp);
-	*/
-
 static	int	ft_u_negitoa(t_print *ret)
 {
 	ret->tmp = NULL;
 	ERR((ret->tmp = ret->flags.ln_mod == 1 ?
-		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+		ft_itoa_base(ret->var, 10) : NULL) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 2 ?
-		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+		ft_itoa_base(ret->var, 10) : NULL) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 3 ?
-		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+		ft_itoa_base(ret->var, 10) : NULL) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 4 ?
-		ft_itoa_base(ret->var, 10) : ret->tmp) != NULL, 0);
+		ft_itoa_base(ret->var, 10) : NULL) != NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 5 ?
-		ft_itoa_base((unsigned)ret->var + USHRT_MAX + 1, 10) : ret->tmp)
+		ft_itoa_base(ret->var + USHRT_MAX + 1, 10) : NULL)
 		!= NULL, 0);
 	ERR((ret->tmp = ret->flags.ln_mod == 6 ?
-		ft_itoa_base((unsigned)ret->var + UCHAR_MAX + 1, 10) : ret->tmp)
+		ft_itoa_base(ret->var + UCHAR_MAX + 1, 10) : NULL)
 		!= NULL, 0);
 	return (0);
 }
@@ -60,7 +44,7 @@ static int	ft_u_width(t_print *ret)
 	char	*temp;
 
 	spacelen = (!ret->flags.in_pres && ret->neg) || ret->flags.plus ||
-		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) - 1 :
+		ret->flags.space ? ret->flags.width - (int)ft_strlen(ret->tmp) :
 		ret->flags.width - (int)ft_strlen(ret->tmp);
 	ERR1(spacelen <= 0, ft_u_flags(ret), 0);
 	temp = ft_strnew(spacelen + 1);
@@ -105,7 +89,7 @@ int			ft_printf_u(t_print *ret, const char **fmt, va_list arg)
 	ft_new_len(ret, arg);
 	ERR1(ret->flags.in_pres && (long long)ret->var == 0 && ret->flags.pres
 		== 0, (*fmt)++, 1);
-	ret->neg = ret->var < 0 ? 1 : 0;
+	ret->neg = (long long)ret->var < 0 ? 1 : 0;
 	if (ret->flags.ln_mod && ret->neg)
 		ft_u_negitoa(ret);
 	else

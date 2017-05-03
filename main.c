@@ -53,11 +53,70 @@ int		main(void)
 	
 	i = 1;
 
-	printf("printf   : %jx|\n", -4294967296);
-	ft_printf("ft_printf: %jx|\n", -4294967296);
+	printf("printf   : %zhd|zhd\n", "4294967296");
+	ft_printf("ft_printf: %zhd|zhd\n", "4294967296");
 
-	printf("printf   : %o, %ho, %hho|\n", -42, -42, -42);
-	ft_printf("ft_printf: %o, %ho, %hho|\n", -42, -42, -42);
+	// printf("printf   : %hhd|hhd\n", 128);
+	// ft_printf("ft_printf: %hhd|hhd\n", 128);
+
+	// printf("printf   : %hhd|hhd\n", -129);
+	// ft_printf("ft_printf: %hhd|hhd\n", -129);
+
+
+	// printf("printf   : %hhld|hhld\n", "128");
+	// ft_printf("ft_printf: %hhld|hhld\n", "128");
+
+	// printf("printf   : %15.4d|15.4d\n", -42);
+	// ft_printf("ft_printf: %15.4d|15.4d\n", -42);
+
+	// printf("printf   : % 03d| 03d\n", 0);
+	// ft_printf("ft_printf: % 03d| 03d\n", 0);
+
+
+	// printf("printf   : %03.2d|03.2d\n", 0);
+	// ft_printf("ft_printf: %03.2d|03.2d\n", 0);
+	
+	// printf("printf   : %+03d|+03d\n", 0);
+	// ft_printf("ft_printf: %+03d|+03d\n", 0);
+
+	// printf("printf   : % 10.5d| 10.5d\n", 4242);
+	// ft_printf("ft_printf: % 10.5d| 10.5d\n", 4242);
+
+
+	// printf("printf   : %#6o|#6o\n", 2500);
+	// ft_printf("ft_printf: %#6o|#6o\n", 2500);
+
+	// printf("printf   : %#08x|#08x\n", 42);
+	// ft_printf("ft_printf: %#08x|#08x\n", 42);
+	
+	// printf("printf   : %#.5x|#.5x\n", 1);
+	// ft_printf("ft_printf: %#.5x|#.5x\n", 1);
+
+	// printf("printf   : %#8x|\n", 42);
+	// ft_printf("ft_printf: %#8x|\n", 42);
+
+	// printf("printf   : %5.x %5.0x|\n", 0, 0);
+	// ft_printf("ft_printf: %5.x %5.0x|\n", 0, 0);
+
+	// printf("printf   : %5.o %5.0o|\n", 0, 0);
+	// ft_printf("ft_printf: %5.o %5.0o|\n", 0, 0);
+
+
+	// printf("printf   : %5.d %5.0d|\n", 0, 0);
+	// ft_printf("ft_printf: %5.d %5.0d|\n", 0, 0);
+
+	// printf("printf   : %ho, %ho|\n", 0, USHRT_MAX);
+	// ft_printf("ft_printf: %ho, %ho|\n", 0, USHRT_MAX);
+
+	// printf("printf   : %jd|\n", LLONG_MIN);
+	// ft_printf("ft_printf: %jd|\n", LLONG_MIN);
+
+
+	// printf("printf   : %jx|\n", -4294967296);
+	// ft_printf("ft_printf: %jx|\n", -4294967296);
+
+	// printf("printf   : %o, %ho, %hho|\n", -42, -42, -42);
+	// ft_printf("ft_printf: %o, %ho, %hho|\n\n", -42, -42, -42);
 
 
 	// printf("printf   : %#.5x|\n", 1);

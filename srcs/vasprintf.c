@@ -20,8 +20,8 @@ static	char	g_ary[COUNT][SIZE] = {
 	{"0"}, {"*"}, {"1"}, {"2"},
 	{"3"}, {"4"}, {"5"}, {"6"},
 	{"7"}, {"8"}, {"9"}, {"*"},
-	{"."}, {"j"}, {"z"}, {"l"},
-	{"ll"}, {"h"}, {"hh"}, {"s"},
+	{"."}, {"j"}, {"z"}, {"ll"},
+	{"l"}, {"hh"}, {"h"}, {"s"},
 	{"d"}, {"i"}, {"u"}, {"o"},
 	{"x"}, {"X"}, {"D"}, {"O"},
 	{"U"}, {"c"}, {"C"}, {"S"},
@@ -52,6 +52,8 @@ static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 		if (**fmt && (ft_strnstr(*fmt, g_ary[i], ft_strlen(g_ary[i]))) != NULL)
 		{
 			ERR((rtn = (*g_ft_ptr[i])(ret, fmt, arg)) == -1, -1);
+			if (i <= 23)
+				i = 0;
 			if (rtn > 0)
 				return (1);
 		}

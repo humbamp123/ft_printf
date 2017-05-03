@@ -12,6 +12,30 @@
 
 #include "libprintf.h"
 
+int		ft_signed(t_print *ret)
+{
+	printf("%d\n", ret->flags.ln_mod);
+	if (ret->flags.ln_mod == 1)
+		ret->tmp = (intmax_t)ret->var < 0 ? ft_itoa_base(-(intmax_t)ret->var,
+			10) : ft_itoa_base((intmax_t)ret->var, 10);
+	else if (ret->flags.ln_mod == 2)
+		ret->tmp = (intmax_t)ret->var < 0 ? ft_itoa_base(-(size_t)ret->var,
+			10) : ft_itoa_base((size_t)ret->var, 10);
+	else if (ret->flags.ln_mod == 3)
+		ret->tmp = (long)ret->var < 0 ? ft_itoa_base(-(long)ret->var,
+			10) : ft_itoa_base((long)ret->var, 10);
+	else if (ret->flags.ln_mod == 4)
+		ret->tmp = (long long)ret->var < 0 ? ft_itoa_base(-(long long)ret->var,
+			10) : ft_itoa_base((long long)ret->var, 10);
+	else if (ret->flags.ln_mod == 5)
+		ret->tmp = (short)ret->var < 0 ? ft_itoa_base(-(short)ret->var,
+			10) : ft_itoa_base((short)ret->var, 10);
+	else if (ret->flags.ln_mod == 6)
+		ret->tmp = (char)ret->var < 0 ? ft_itoa_base(-(char)ret->var,
+			10) : ft_itoa_base((char)ret->var, 10);
+	return (0);
+}
+
 int		ft_printf_flg(t_print *ret, const char **fmt, va_list arg)
 {
 	while (**fmt && (**fmt == ' ' || **fmt == '-' || **fmt == '+' ||
