@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 14:08:05 by apineda           #+#    #+#             */
-/*   Updated: 2017/04/05 22:04:11 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 17:57:13 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static size_t	flag_checker(t_print *ret, const char **fmt, va_list arg)
 		if (**fmt && (ft_strnstr(*fmt, g_ary[i], ft_strlen(g_ary[i]))) != NULL)
 		{
 			ERR((rtn = (*g_ft_ptr[i])(ret, fmt, arg)) == -1, -1);
-			if (i <= 23)
+			if (i < 23)
 				i = 0;
 			if (rtn > 0)
 				return (1);
