@@ -6,7 +6,7 @@
 /*   By: apineda <apineda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/03 14:11:16 by apineda           #+#    #+#             */
-/*   Updated: 2017/04/05 13:29:45 by apineda          ###   ########.fr       */
+/*   Updated: 2017/05/05 18:02:17 by apineda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,16 @@ int		ft_queenies_crazy_write(int fd, char *str, int len)
 	char null;
 
 	null = '\0';
-	while (len--)
-	{
-		if (*str == 7)
-			write(fd, &null, 1);
-		else
-			ERR(write(fd, &*str, 1) == -1, -1);
-		str++;
-	}
+	if (!(ft_strchr(str, 7)))
+		write(fd, str, len);
+	else
+		while (len--)
+		{
+			if (*str == 7)
+				write(fd, &null, 1);
+			else
+				ERR(write(fd, &*str, 1) == -1, -1);
+			str++;
+		}
 	return (1);
 }
